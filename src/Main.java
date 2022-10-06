@@ -9,11 +9,21 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         } catch (Throwable e) {
             e.printStackTrace();
         }
-
+        /*
+        javax.swing.plaf.metal.MetalLookAndFeel
+javax.swing.plaf.nimbus.NimbusLookAndFeel
+com.sun.java.swing.plaf.motif.MotifLookAndFeel
+com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
+        */
+        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo look : looks) {
+            System.out.println(look.getClassName());
+        }
 
 
         new loginWindow();

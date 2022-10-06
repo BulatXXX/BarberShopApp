@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 public class loginWindow extends JFrame  {
 
@@ -12,7 +13,8 @@ public class loginWindow extends JFrame  {
     JButton enterButton = new JButton("Enter");
     JButton cancelButton = new JButton("Cancel");
     Font log_font= new Font("Malgun Gothic",Font.BOLD,18);
-    Font text_font = new Font("Malgun Gothic",Font.BOLD,14);
+    Font text_font = new Font("Malgun Gothic",Font.BOLD,12);
+
 
     int count = 0;
     loginWindow()  {
@@ -72,6 +74,8 @@ public class loginWindow extends JFrame  {
         southPanel.setBackground(Color.DARK_GRAY);
 
         enterButton.setBackground(Color.DARK_GRAY);
+        enterButton.setForeground(Color.WHITE);
+
         enterButton.setFocusable(false);
         enterButton.setPreferredSize(new Dimension( 75, 30 ) );
         enterButton.setFont(text_font);
@@ -84,6 +88,7 @@ public class loginWindow extends JFrame  {
         southPanel.add(enterButton);
 
         cancelButton.setBackground(Color.DARK_GRAY);
+        cancelButton.setForeground(Color.WHITE);
         cancelButton.setFocusable(false);
         cancelButton.setFont(text_font);
         cancelButton.setPreferredSize(new Dimension( 75, 30 ) );
