@@ -12,7 +12,7 @@ public class loginWindow extends JFrame  {
     JButton enterButton = new JButton("Enter");
     JButton cancelButton = new JButton("Cancel");
     Font log_font= new Font("Malgun Gothic",Font.BOLD,18);
-    Font text_font = new Font("Malgun Gothic",Font.BOLD,11);
+    Font text_font = new Font("Malgun Gothic",Font.BOLD,14);
 
     int count = 0;
     loginWindow()  {
@@ -36,13 +36,9 @@ public class loginWindow extends JFrame  {
         JPanel northPanel = new JPanel();
         northPanel.setVisible(true);
         northPanel.setBackground(Color.DARK_GRAY);
-        northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+        northPanel.setLayout(new GridLayout(3,4,20,20));
 
-        JPanel loginPanel = new JPanel();
-        loginPanel.setBackground(Color.DARK_GRAY);
-        loginPanel.setVisible(true);
-        loginPanel.setLayout(new FlowLayout());
-// loginPanel properties
+
         JLabel loginLabel = new JLabel("Login: ");
         loginLabel.setForeground(Color.WHITE);
         loginLabel.setFont(log_font);
@@ -51,35 +47,31 @@ public class loginWindow extends JFrame  {
         passLabel.setForeground(Color.WHITE);
         passLabel.setFont(log_font);
 //loginLabel and passLabel
-
-        loginPanel.add(loginLabel);
-        loginPanel.add(Box.createRigidArea(new Dimension(frameWidth/39, 0)));
-
-        loginPanel.add(loginText);
-
-        JPanel passwordPanel = new JPanel();
-        passwordPanel.setBackground(Color.DARK_GRAY);
-        passwordPanel.setVisible(true);
+        makeSpace(northPanel,5);
 
 
+        northPanel.add(loginLabel);
 
-        passwordPanel.add(passLabel);
-        passwordPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-        passwordPanel.add(passwordText);
+        northPanel.add(loginText);
+
+        makeSpace(northPanel,2);
 
 
 
-        northPanel.add(Box.createRigidArea(new Dimension(0, 30)));
-        northPanel.add(loginPanel);
-        northPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-        northPanel.add(passwordPanel);
+
+        northPanel.add(passLabel);
+        // passwordPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+        northPanel.add(passwordText);
+
+
         panel.add(northPanel, BorderLayout.NORTH);
 
         JPanel southPanel = new JPanel();
         southPanel.setVisible(true);
         southPanel.setBackground(Color.DARK_GRAY);
 
+        enterButton.setBackground(Color.DARK_GRAY);
         enterButton.setFocusable(false);
         enterButton.setPreferredSize(new Dimension( 75, 30 ) );
         enterButton.setFont(text_font);
@@ -91,6 +83,7 @@ public class loginWindow extends JFrame  {
         });
         southPanel.add(enterButton);
 
+        cancelButton.setBackground(Color.DARK_GRAY);
         cancelButton.setFocusable(false);
         cancelButton.setFont(text_font);
         cancelButton.setPreferredSize(new Dimension( 75, 30 ) );
@@ -103,5 +96,11 @@ public class loginWindow extends JFrame  {
 
         add(panel);
 
+    }
+
+    private void makeSpace(JPanel northPanel,int n) {
+        for (int i = 0; i < n; i++) {
+            northPanel.add(Box.createRigidArea(new Dimension(30, 30)));
+        }
     }
 }
