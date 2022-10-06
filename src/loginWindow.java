@@ -97,7 +97,6 @@ public class loginWindow extends JFrame  {
         add(panel);
 
     }
-
     private void makeSpace(JPanel northPanel,int n) {
         for (int i = 0; i < n; i++) {
             northPanel.add(Box.createRigidArea(new Dimension(30, 30)));
