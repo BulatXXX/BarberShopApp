@@ -11,6 +11,7 @@ public class loginWindow extends JFrame {
     JTextField passwordText = new JTextField();
     JButton enterButton = new JButton("Enter");
     JButton cancelButton = new JButton("Cancel");
+    String log_font= "";
     loginWindow() {
 
 
@@ -34,18 +35,22 @@ public class loginWindow extends JFrame {
 // loginPanel properties
         JLabel loginLabel = new JLabel("Login: ");
         loginLabel.setForeground(Color.WHITE);
-        loginLabel.setFont(new Font("Calibri ",Font.BOLD,18 ));
+
+        loginLabel.setFont(new Font(log_font,Font.BOLD,18 ));
 
         loginPanel.add(loginLabel);
         loginPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+        loginText.setPreferredSize( new Dimension( 200, 18 ) );
         loginPanel.add(loginText);
 
         JPanel passwordPanel = new JPanel();
         passwordPanel.setBackground(Color.DARK_GRAY);
         passwordPanel.setVisible(true);
 
-        passwordPanel.add(new Label("pass"));
+        passwordPanel.add(new Label("Password: "));
+        loginLabel.setFont(new Font(log_font,Font.BOLD,18 ));
         passwordPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+        passwordText.setPreferredSize( new Dimension( 200, 24 ) );
         passwordPanel.add(passwordText);
 
         northPanel.setVisible(true);

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="firstVe">
-      <change afterPath="$PROJECT_DIR$/src/dialogWindow.java" afterDir="false" />
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="PC extension">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,7 @@
       <workItem from="1662621084895" duration="2530000" />
       <workItem from="1662629619778" duration="611000" />
       <workItem from="1664864309927" duration="3762000" />
+      <workItem from="1665041329966" duration="1118000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -98,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662621343317</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="PC extension">
+      <created>1665041647263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665041647263</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +137,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="firstVers" />
     <MESSAGE value="firstVe" />
-    <option name="LAST_COMMIT_MESSAGE" value="firstVe" />
+    <MESSAGE value="PC extension" />
+    <option name="LAST_COMMIT_MESSAGE" value="PC extension" />
   </component>
 </project>
