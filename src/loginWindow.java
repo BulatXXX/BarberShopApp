@@ -2,12 +2,13 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import javax.swing.UIManager;
 
 public class loginWindow extends JFrame  {
 
     JTextField loginText = new JTextField();
-    JTextField passwordText = new JTextField();
+    JPasswordField passwordText = new JPasswordField();
     JButton enterButton = new JButton("Enter");
     JButton cancelButton = new JButton("Cancel");
     Font log_font= new Font("Malgun Gothic",Font.BOLD,18);
@@ -19,9 +20,7 @@ public class loginWindow extends JFrame  {
         passwordText.setPreferredSize( new Dimension( 200, 28 ) );
         loginText.setFont(text_font);
         passwordText.setFont(text_font);
-
-
-
+        passwordText.setEchoChar('*');
 
         setUndecorated(true);
         setVisible(true);
@@ -80,15 +79,19 @@ public class loginWindow extends JFrame  {
         JPanel southPanel = new JPanel();
         southPanel.setVisible(true);
         southPanel.setBackground(Color.DARK_GRAY);
+
+        enterButton.setFocusable(false);
         enterButton.setPreferredSize(new Dimension( 75, 30 ) );
         enterButton.setFont(text_font);
         enterButton.addActionListener(e -> {
-            System.out.println(passwordText.getText());
-            System.out.println(loginText.getText());
+            if(!passwordText.getText().isEmpty())System.out.println(passwordText.getText());
+            if(!loginText.getText().isEmpty())System.out.println(loginText.getText());
             passwordText.setText(null);
             loginText.setText(null);
         });
         southPanel.add(enterButton);
+
+        cancelButton.setFocusable(false);
         cancelButton.setFont(text_font);
         cancelButton.setPreferredSize(new Dimension( 75, 30 ) );
         cancelButton.addActionListener(e -> System.exit(0));
