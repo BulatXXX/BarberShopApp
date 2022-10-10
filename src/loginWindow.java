@@ -3,6 +3,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -79,11 +80,16 @@ public class loginWindow extends JFrame  {
         enterButton.setFocusable(false);
         enterButton.setPreferredSize(new Dimension( 75, 30 ) );
         enterButton.setFont(text_font);
+
         enterButton.addActionListener(e -> {
             if(!passwordText.getText().isEmpty())System.out.println(passwordText.getText());
             if(!loginText.getText().isEmpty())System.out.println(loginText.getText());
             passwordText.setText(null);
             loginText.setText(null);
+            if(checkPassword(loginText.getText(),passwordText.getText())){
+                setVisible(false);
+                new AppFrame(isClient(loginText.getText(),passwordText.getText()));
+            }
         });
         southPanel.add(enterButton);
 
@@ -100,11 +106,16 @@ public class loginWindow extends JFrame  {
         panel.setBackground(Color.DARK_GRAY);
 
         add(panel);
-
     }
     private void makeSpace(JPanel northPanel,int n) {
         for (int i = 0; i < n; i++) {
             northPanel.add(Box.createRigidArea(new Dimension(30, 30)));
         }
+    }
+    private boolean checkPassword(String login,String password){
+        return true;
+    }
+    private boolean isClient(String login,String password){
+        return true;
     }
 }
