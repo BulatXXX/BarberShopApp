@@ -11,21 +11,25 @@ public class Main {
 
         setAppLookAndFeel();
         registerNewFont("Montserrat-Medium.ttf");
-
-        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
-        for (UIManager.LookAndFeelInfo look : looks) {
-            System.out.println(look.getClassName());
-        }
-
-
         new loginWindow();
 
-        // new AppWindow();
+        showAllInstalledLookAndFeels();
+        showAllInstalledFonts();
+    }
+
+    private static void showAllInstalledFonts() {
         GraphicsEnvironment ge = GraphicsEnvironment
                 .getLocalGraphicsEnvironment();
         Font[] allFonts = ge.getAllFonts();
         for (Font font : allFonts) {
             System.out.println(font.getFontName(Locale.US));
+        }
+    }
+
+    private static void showAllInstalledLookAndFeels() {
+        UIManager.LookAndFeelInfo[] looks = UIManager.getInstalledLookAndFeels();
+        for (UIManager.LookAndFeelInfo look : looks) {
+            System.out.println(look.getClassName());
         }
     }
 
@@ -42,7 +46,8 @@ public class Main {
 
     private static void setAppLookAndFeel() {
         try {
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            // UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         } catch (Throwable e) {
             e.printStackTrace();
         }
