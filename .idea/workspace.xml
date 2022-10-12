@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="home">
-      <change afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="2nd window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Montserrat-VariableFont_wght.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/loginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +34,9 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -68,6 +71,8 @@
       <workItem from="1665174165490" duration="629000" />
       <workItem from="1665328792209" duration="1987000" />
       <workItem from="1665334722694" duration="3176000" />
+      <workItem from="1665398361808" duration="88000" />
+      <workItem from="1665570960869" duration="986000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -146,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665072733347</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="2nd window">
+      <created>1665398410546</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665398410546</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +194,7 @@
     <MESSAGE value="PC extension" />
     <MESSAGE value="Font" />
     <MESSAGE value="home" />
-    <option name="LAST_COMMIT_MESSAGE" value="home" />
+    <MESSAGE value="2nd window" />
+    <option name="LAST_COMMIT_MESSAGE" value="2nd window" />
   </component>
 </project>

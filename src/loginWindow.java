@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -13,12 +15,13 @@ public class loginWindow extends JFrame  {
     JPasswordField passwordText = new JPasswordField();
     JButton enterButton = new JButton("Enter");
     JButton cancelButton = new JButton("Cancel");
-    Font log_font= new Font("Malgun Gothic",Font.BOLD,18);
-    Font text_font = new Font("Malgun Gothic",Font.BOLD,12);
+    Font log_font= new Font("Montserrat Medium",Font.BOLD,18);
+    Font text_font = new Font("Montserrat Medium",Font.BOLD,12);
 
 
     int count = 0;
     loginWindow()  {
+
         loginText.setPreferredSize( new Dimension( 200, 28 ) );
         passwordText.setPreferredSize( new Dimension( 200, 28 ) );
         loginText.setFont(text_font);
