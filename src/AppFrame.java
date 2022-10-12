@@ -4,61 +4,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AppFrame extends JFrame {
-    JPanel infoPanel = new JPanel();
-    JPanel zapis = new JPanel();
-    String count = "0";
+    private JPanel panel1;
+    private JPanel clientPanel;
+    private JPanel servicePanel;
+    private JButton newsButton;
+    private JButton pricesButton;
+    private JButton bookButton;
+    private JButton newsButton1;
+    private JButton scheduleButton;
+    private JPanel clientTabsPanel;
+    private JPanel newsPanel;
+    private JPanel pricesPanel;
+    private JPanel bookPanel;
+    private JPanel buttonPanel;
+    private JButton exitButton;
+    private JButton ratingsButton;
+    private JPanel serviceTabsPanel;
+    private JPanel newsPanelService;
+    private JPanel schedulePanel;
+    private JPanel ratingsPanel;
 
-    public AppFrame(boolean client) {
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
+    AppFrame(boolean is_client) {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        designPanel(infoPanel);
-        designPanel(zapis);
+        setContentPane(panel1);
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = (int) dimension.getWidth(), frameHeight = (int) dimension.getHeight();
+        setBounds(0, 0, frameWidth, frameHeight);
+        CardLayout mode = (CardLayout) (panel1.getLayout());
+        if (is_client) mode.show(panel1, "ClientCard");
+        else mode.show(panel1, "ServiceCard");
+        CardLayout tabs;
 
-        Font font = new Font("Malgun Gothic", Font.BOLD, 20);
-        final JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.setFont(font);
-
-        JPanel content = new JPanel();
-        content.setLayout(new BorderLayout());
-        content.setBackground(Color.DARK_GRAY);
-        JButton b = new JButton("Exit");
-        b.addActionListener(e -> System.exit(0));
-        tabbedPane.setBackground(Color.darkGray);
-        tabbedPane.setForeground(Color.white);
-        tabbedPane.setFocusable(false);
-        tabbedPane.addTab("Контактная информация", infoPanel);
-        tabbedPane.addTab("Запись", zapis);
+        if (is_client) {
+            tabs = (CardLayout) (clientTabsPanel.getLayout());
+            newsButton.addActionListener(e -> tabs.show(clientTabsPanel, "news"));
+            pricesButton.addActionListener(e -> tabs.show(clientTabsPanel, "prices"));
+            bookButton.addActionListener(e -> tabs.show(clientTabsPanel, "book"));
+        }else {
+            tabs = (CardLayout) (serviceTabsPanel.getLayout());
+            newsButton1.addActionListener(e -> tabs.show(serviceTabsPanel, "news"));
+            scheduleButton.addActionListener(e -> tabs.show(serviceTabsPanel, "schedule"));
+            ratingsButton.addActionListener(e -> tabs.show(serviceTabsPanel, "ratings"));
+        }
 
 
-        content.add(tabbedPane, BorderLayout.CENTER);
-
-        getContentPane().add(content);
-
-        setPreferredSize(new Dimension(1920, 1080));
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
-
-    public void designPanel(JPanel panel) {
-        panel.setFocusable(false);
-        panel.setBackground(Color.DARK_GRAY);
-        setVisible(true);
-        count = Integer.toString(1);
-        JButton btn = new JButton(count);
-        btn.setBackground(Color.DARK_GRAY);
-        btn.setFont(new Font("Malgun Gothic", Font.BOLD, 20));
-        btn.setForeground(Color.WHITE);
-        btn.setFocusable(false);
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(3);
-            }
-        });
-        panel.add(btn);
+        exitButton.addActionListener(e -> System.exit(2));
     }
 }

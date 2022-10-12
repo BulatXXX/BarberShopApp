@@ -44,7 +44,7 @@ public class loginFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new AppWindow();
+                new AppFrame(isClient());
             }
         });
 
@@ -62,6 +62,19 @@ public class loginFrame extends JFrame {
         setResizable(false);
 
 
+        createNewAccountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new registerWindow();
+            }
+        });
+    }
+
+    private boolean isClient() {
+        if(usernameTextField.getText().equals("Client")||usernameTextField.getText().equals("client"))return true;
+        if(usernameTextField.getText().equals("Service")||usernameTextField.getText().equals("service"))return false;
+        return false;
     }
 
     private void loginButtonSettings() {

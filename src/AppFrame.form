@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="AppFrame">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="c47cb" binding="clientPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="ClientCard"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="b43c3" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="93433" class="javax.swing.JButton" binding="newsButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="News"/>
+                </properties>
+              </component>
+              <component id="dd7f6" class="javax.swing.JButton" binding="pricesButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Prices"/>
+                </properties>
+              </component>
+              <component id="23bcd" class="javax.swing.JButton" binding="bookButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Book"/>
+                </properties>
+              </component>
+              <hspacer id="d8c1">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="4d92" class="javax.swing.JButton" binding="exitButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="exit"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="774d6" binding="clientTabsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="900"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="99582" binding="newsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="news"/>
+                </constraints>
+                <properties>
+                  <background color="-16761601"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="ed932" binding="pricesPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="prices"/>
+                </constraints>
+                <properties>
+                  <background color="-65519"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="66c8c" binding="bookPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="book"/>
+                </constraints>
+                <properties>
+                  <background color="-11796703"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="8ddc7" binding="servicePanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="ServiceCard"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="c4efa" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="fbaaf" class="javax.swing.JButton" binding="newsButton1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="News"/>
+                </properties>
+              </component>
+              <component id="9bf9e" class="javax.swing.JButton" binding="scheduleButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Schedule"/>
+                </properties>
+              </component>
+              <hspacer id="47b3">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </hspacer>
+              <component id="3417d" class="javax.swing.JButton" binding="ratingsButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Ratings"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="7e326" binding="serviceTabsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="900"/>
+              </grid>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="859a5" binding="newsPanelService" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="news"/>
+                </constraints>
+                <properties>
+                  <background color="-16711423"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="d3fc4" binding="schedulePanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="schedule"/>
+                </constraints>
+                <properties>
+                  <background color="-14139136"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+              <grid id="37288" binding="ratingsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+                <constraints>
+                  <card name="ratings"/>
+                </constraints>
+                <properties>
+                  <background color="-12697344"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
