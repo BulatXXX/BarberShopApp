@@ -30,6 +30,7 @@ public class loginFrame extends JFrame {
         bbshopLabel.setForeground(Color.decode("0x616465"));
         bbshopLabel.setFont(labelFont);
 
+
         centerPanel.setBackground(Color.darkGray);
         southPanel.setBackground(Color.darkGray);
 
@@ -37,6 +38,33 @@ public class loginFrame extends JFrame {
         labelLabel.setForeground(Color.decode("0x949494"));
 
         setCenterPanel();
+
+        loginButtonSettings();
+        logInButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new AppWindow();
+            }
+        });
+
+        createNewAccountButtonSettings();
+    //JFrame settings
+        setContentPane(panel1);
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = (int) dimension.getWidth(), frameHeight = (int) dimension.getHeight();
+        setBounds(frameWidth / 3, frameHeight / 3, frameWidth / 3, frameHeight / 3);
+
+        exitButtonSettings();
+        setUndecorated(true);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+
+
+    }
+
+    private void loginButtonSettings() {
         logInButton.setBackground(Color.decode("0x404040"));
         logInButton.setForeground(Color.GRAY);
         logInButton.setBorder(null);
@@ -45,7 +73,6 @@ public class loginFrame extends JFrame {
         logInButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
             }
 
             @Override
@@ -68,19 +95,6 @@ public class loginFrame extends JFrame {
                 logInButton.setForeground(Color.GRAY);
             }
         });
-
-        createNewAccountButtonSettings();
-        setContentPane(panel1);
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = (int) dimension.getWidth(), frameHeight = (int) dimension.getHeight();
-        setBounds(frameWidth / 3, frameHeight / 3, frameWidth / 3, frameHeight / 3);
-
-        exitButtonSettings();
-        setUndecorated(true);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-
     }
 
     private void setCenterPanel() {
@@ -127,7 +141,7 @@ public class loginFrame extends JFrame {
         passwordTextField.setFont(secondFont);
         passwordTextField.setForeground(Color.white);
         passwordTextField.setCaretColor(Color.white);
-        passwordTextField.setEchoChar('#');
+        passwordTextField.setEchoChar('•');
         passwordTextField.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

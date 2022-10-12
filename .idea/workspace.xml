@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="2nd window">
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="new login">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/loginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginWindow.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +39,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -76,7 +81,7 @@
       <workItem from="1665334722694" duration="3176000" />
       <workItem from="1665398361808" duration="88000" />
       <workItem from="1665570960869" duration="986000" />
-      <workItem from="1665575343530" duration="6705000" />
+      <workItem from="1665575343530" duration="8979000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -169,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665575873229</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="new login">
+      <created>1665582240785</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1665582240785</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +219,7 @@
     <MESSAGE value="Font" />
     <MESSAGE value="home" />
     <MESSAGE value="2nd window" />
-    <option name="LAST_COMMIT_MESSAGE" value="2nd window" />
+    <MESSAGE value="new login" />
+    <option name="LAST_COMMIT_MESSAGE" value="new login" />
   </component>
 </project>
