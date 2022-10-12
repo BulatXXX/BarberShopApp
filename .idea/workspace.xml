@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="2nd window">
-      <change afterPath="$PROJECT_DIR$/Montserrat-VariableFont_wght.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exitButtonIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/loginFrame.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/loginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-ExtraBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-ExtraLight.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-ExtraLightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-MediumItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-SemiBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/Montserrat-ThinItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/изображение_2022-10-12_141431949.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +76,7 @@
       <workItem from="1665334722694" duration="3176000" />
       <workItem from="1665398361808" duration="88000" />
       <workItem from="1665570960869" duration="986000" />
-      <workItem from="1665575343530" duration="309000" />
+      <workItem from="1665575343530" duration="6705000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -182,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665398410546</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="2nd window">
+      <created>1665575873229</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1665575873229</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

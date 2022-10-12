@@ -11,7 +11,7 @@ public class Main {
 
         setAppLookAndFeel();
         registerNewFont("Montserrat-Medium.ttf");
-        new loginWindow();
+        new loginFrame();
 
         showAllInstalledLookAndFeels();
         showAllInstalledFonts();
