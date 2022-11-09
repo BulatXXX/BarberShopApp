@@ -263,6 +263,44 @@ public class loginFrame extends JFrame {
         exitButton.setIcon(new ImageIcon(scaled));
         exitButton.addActionListener(e -> System.exit(1));
         exitButton.setFocusable(false);
+        exitButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                try {
+                    exitButtonImg = ImageIO.read(new File("exitButtonIcon_st2.png"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                Image scaled = exitButtonImg.getScaledInstance(size.width, size.height, java.awt.Image.SCALE_SMOOTH);
+                exitButton.setIcon(new ImageIcon(scaled));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                try {
+                    exitButtonImg = ImageIO.read(new File("exitButtonIcon.png"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                Image scaled = exitButtonImg.getScaledInstance(size.width, size.height, java.awt.Image.SCALE_SMOOTH);
+                exitButton.setIcon(new ImageIcon(scaled));
+            }
+        });
     }
     public static boolean checkPassword(){
         return true;

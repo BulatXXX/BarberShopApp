@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class AppFrame extends JFrame {
     private JPanel panel1;
@@ -23,7 +25,9 @@ public class AppFrame extends JFrame {
     private JPanel newsPanelService;
     private JPanel schedulePanel;
     private JPanel ratingsPanel;
-
+    private JPanel buttonPanel2;
+    Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
+    Font secondFont = new Font("Montserrat Medium", Font.BOLD, 14);
     AppFrame(boolean is_client) {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,6 +53,51 @@ public class AppFrame extends JFrame {
         }
 
 
-        exitButton.addActionListener(e -> System.exit(2));
+       
+        northPanelButtonSettings(newsButton);
+        northPanelButtonSettings(pricesButton);
+        northPanelButtonSettings(bookButton);
+        northPanelButtonSettings(newsButton1);
+        northPanelButtonSettings(scheduleButton);
+        northPanelButtonSettings(ratingsButton);
+
+        buttonPanel.setBackground(Color.darkGray);
+        buttonPanel2.setBackground(Color.darkGray);
+
     }
+    private void northPanelButtonSettings(JButton newsButton) {
+        newsButton.setFocusable(false);
+        newsButton.setBackground(Color.darkGray);
+        newsButton.setFont(secondFont);
+        newsButton.setForeground(Color.GRAY);
+        newsButton.setBorder(null);
+        newsButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // new registerWindow();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                newsButton.setForeground(Color.white);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                newsButton.setForeground(Color.GRAY);
+            }
+        });
+
+    }
+
 }

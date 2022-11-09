@@ -2,17 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="two more windows">
-      <change afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registerWindow.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/registerWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exitButtonIconR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exitButtonIcon_st2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/exitButtonIcon_st2R.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Документ Microsoft Word.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/loginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerWindow.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +43,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -53,6 +56,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Spectra\IdeaProjects\BarberShopApp1" />
     </key>
   </component>
   <component name="RunManager">
@@ -84,7 +90,12 @@
       <workItem from="1665334722694" duration="3176000" />
       <workItem from="1665398361808" duration="88000" />
       <workItem from="1665570960869" duration="986000" />
-      <workItem from="1665575343530" duration="16936000" />
+      <workItem from="1665575343530" duration="18114000" />
+      <workItem from="1666035074356" duration="135000" />
+      <workItem from="1667162977127" duration="154000" />
+      <workItem from="1667554794425" duration="4580000" />
+      <workItem from="1667562865043" duration="1741000" />
+      <workItem from="1668027063185" duration="403000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -191,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665584426403</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="two more windows">
+      <created>1665592804612</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665592804612</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
