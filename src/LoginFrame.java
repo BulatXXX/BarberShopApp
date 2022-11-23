@@ -3,8 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.security.Key;
 
 public class LoginFrame extends JFrame {
     private JPanel panel1;
@@ -15,11 +15,12 @@ public class LoginFrame extends JFrame {
     private JPanel centerPanel;
     private JLabel labelLabel;
     private JLabel userNameLabel;
-    private JTextField loginRegField;
+    private JTextField loginField;
     private JPasswordField passwordTextField;
     private JLabel passwordLabel;
     private JButton createNewAccountButton;
     private JButton logInButton;
+    private JLabel msgLabel;
     private BufferedImage exitButtonImg;
     private
 
@@ -30,7 +31,8 @@ public class LoginFrame extends JFrame {
         this.setUndecorated(true);
         bbshopLabel.setForeground(Color.decode("0x616465"));
         bbshopLabel.setFont(labelFont);
-
+        msgLabel.setFont(secondFont);
+        msgLabel.setForeground(Color.red);
 
         centerPanel.setBackground(Color.darkGray);
         southPanel.setBackground(Color.darkGray);
@@ -41,16 +43,20 @@ public class LoginFrame extends JFrame {
         setCenterPanel();
 
         loginButtonSettings();
-        logInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+
+        logInButton.addActionListener(e -> {
+
+            String success = checkPassword();
+            if (success.equals("Not")) {
+                msgLabel.setText("Wrong login or password");
+            } else {
                 setVisible(false);
-                new AppFrame(isClient());
+                new AppFrame(success);
             }
         });
 
         createNewAccountButtonSettings();
-    //JFrame settings
+        //JFrame settings
         setContentPane(panel1);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int frameWidth = (int) dimension.getWidth(), frameHeight = (int) dimension.getHeight();
@@ -72,9 +78,9 @@ public class LoginFrame extends JFrame {
         });
     }
 
-    private boolean isClient() {
-        if(loginRegField.getText().equals("Client")|| loginRegField.getText().equals("client"))return true;
-        if(loginRegField.getText().equals("Service")|| loginRegField.getText().equals("service"))return false;
+    private boolean isClient(String client) {
+        if (client.equals("client")) return true;
+        if (client.equals("service")) return false;
         return false;
     }
 
@@ -118,15 +124,15 @@ public class LoginFrame extends JFrame {
         passwordLabel.setFont(secondFont);
         passwordLabel.setForeground(Color.decode("0x949494"));
 
-        loginRegField.setBackground(Color.DARK_GRAY);
-        loginRegField.setFont(secondFont);
-        loginRegField.setForeground(Color.white);
-        loginRegField.setCaretColor(Color.white);
-        loginRegField.addMouseListener(new MouseListener() {
+        loginField.setBackground(Color.DARK_GRAY);
+        loginField.setFont(secondFont);
+        loginField.setForeground(Color.white);
+        loginField.setCaretColor(Color.white);
+        loginField.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (loginRegField.getText().equals("Username")) loginRegField.setCaretPosition(0);
-                if (loginRegField.getText().equals("Username")) loginRegField.setText("");
+                if (loginField.getText().equals("Username")) loginField.setCaretPosition(0);
+                if (loginField.getText().equals("Username")) loginField.setText("");
                 if (passwordTextField.getText().equals("")) passwordTextField.setText("Password");
             }
 
@@ -161,7 +167,7 @@ public class LoginFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (passwordTextField.getText().equals("Username")) passwordTextField.setCaretPosition(0);
                 if (passwordTextField.getText().equals("Password")) passwordTextField.setText("");
-                if (loginRegField.getText().equals("")) loginRegField.setText("Username");
+                if (loginField.getText().equals("")) loginField.setText("Username");
             }
 
             @Override
@@ -184,13 +190,13 @@ public class LoginFrame extends JFrame {
 
             }
         });
-        loginRegField.addKeyListener(new KeyAdapter() {
+        loginField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (loginRegField.getText().equals("Username")) loginRegField.setText("");
-                if(loginRegField.getText().length()>20){
-                    String temp = loginRegField.getText().substring(0, loginRegField.getText().length()-2);
-                    loginRegField.setText(temp);
+                if (loginField.getText().equals("Username")) loginField.setText("");
+                if (loginField.getText().length() > 20) {
+                    String temp = loginField.getText().substring(0, loginField.getText().length() - 2);
+                    loginField.setText(temp);
                 }
                 super.keyTyped(e);
             }
@@ -199,8 +205,8 @@ public class LoginFrame extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (passwordTextField.getText().equals("Password")) passwordTextField.setText("");
-                if(passwordTextField.getText().length()>20){
-                    String temp = passwordTextField.getText().substring(0,passwordTextField.getText().length()-2);
+                if (passwordTextField.getText().length() > 20) {
+                    String temp = passwordTextField.getText().substring(0, passwordTextField.getText().length() - 2);
                     passwordTextField.setText(temp);
                 }
                 super.keyTyped(e);
@@ -303,7 +309,32 @@ public class LoginFrame extends JFrame {
             }
         });
     }
-    public static boolean checkPassword(){
-        return true;
+
+    public String checkPassword() {
+        try {
+
+            String[] list;
+            File file = new File("people.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                list = line.split(" ");
+                if (loginField.getText().equals(list[0]) && passwordTextField.getText().equals(list[1])) {
+                    return list[0] + " " + list[2];
+                }
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Not";
+
     }
 }

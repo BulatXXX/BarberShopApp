@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
-public class RegisterFrame extends  JFrame {
+public class RegisterFrame extends JFrame {
     private JPanel panel1;
     private JButton exitButtonReg;
     private JLabel BarbershopLabel;
@@ -23,10 +23,12 @@ public class RegisterFrame extends  JFrame {
     private JLabel loginlabel;
     private JLabel passwordLabel;
     private JButton backButton;
+    private JLabel msgLabel;
     BufferedImage exitButtonImg = null;
     Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
     Font secondFont = new Font("Montserrat Medium", Font.BOLD, 14);
-    RegisterFrame(){
+
+    RegisterFrame() {
         this.setUndecorated(true);
         setContentPane(panel1);
         setVisible(true);
@@ -53,6 +55,8 @@ public class RegisterFrame extends  JFrame {
         registerButton.setFocusable(false);
         loginRegField.setCaretColor(Color.white);
         passwordField1.setCaretColor(Color.white);
+        msgLabel.setFont(secondFont);
+        msgLabel.setForeground(Color.red);
 
         backButton.addActionListener(e -> {
             setVisible(false);
@@ -86,7 +90,27 @@ public class RegisterFrame extends  JFrame {
         });
 
         registerButton.addActionListener(e -> {
+            try (FileWriter fileWriter = new FileWriter("people.txt", true)) {
+                String string = "";
+                if(!isInFile(loginRegField.getText())){
 
+
+                string += loginRegField.getText() + " " + passwordField1.getText();
+                if (serviceCheckBox.isSelected()) {
+                    string += " service";
+                } else {
+                    string += " client";
+                }
+                fileWriter.write(string + "\n");
+                msgLabel.setForeground(Color.green);
+                msgLabel.setText("Successfully registered");
+                }else {
+                    msgLabel.setForeground(Color.red);
+                    msgLabel.setText("User with this login already exists");
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
         });
         backButton.addMouseListener(new MouseListener() {
             @Override
@@ -106,7 +130,7 @@ public class RegisterFrame extends  JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                    backButton.setForeground(Color.WHITE);
+                backButton.setForeground(Color.WHITE);
             }
 
             @Override
@@ -141,7 +165,6 @@ public class RegisterFrame extends  JFrame {
         exitButtonReg.addActionListener(e -> System.exit(1));
         Dimension size = exitButtonReg.getSize();
         Insets insets = exitButtonReg.getInsets();
-
 
 
         try {
@@ -205,5 +228,32 @@ public class RegisterFrame extends  JFrame {
                 exitButtonReg.setIcon(new ImageIcon(scaled));
             }
         });
+
     }
+
+    public boolean isInFile(String login) {
+        try {
+
+            String[] list;
+            File file = new File("people.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                list = line.split( " ");
+                if(list[0].equals(login))return true;
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
