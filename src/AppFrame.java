@@ -29,6 +29,8 @@ public class AppFrame extends JFrame {
     Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
     Font secondFont = new Font("Montserrat Medium", Font.BOLD, 14);
     AppFrame(boolean is_client) {
+        exitButton.addActionListener(e->System.exit(2));
+        setUndecorated(true);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(panel1);

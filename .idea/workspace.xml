@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="two more windows">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exitButtonIconR.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exitButtonIcon_st2.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/exitButtonIcon_st2R.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Документ Microsoft Word.docx" afterDir="false" />
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="dialogWindow is almost ready">
+      <change afterPath="$PROJECT_DIR$/src/RegisterFrame.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RegisterFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/loginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loginFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registerWindow.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerWindow.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/registerWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppWindow.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppWindow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginFrame.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/loginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerWindow.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerWindow.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,18 +43,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -96,6 +92,8 @@
       <workItem from="1667554794425" duration="4580000" />
       <workItem from="1667562865043" duration="1741000" />
       <workItem from="1668027063185" duration="403000" />
+      <workItem from="1668766258106" duration="89000" />
+      <workItem from="1669201485885" duration="6049000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -237,7 +235,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

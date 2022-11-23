@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class loginFrame extends JFrame {
+public class LoginFrame extends JFrame {
     private JPanel panel1;
     private JPanel northPanel;
     private JLabel bbshopLabel;
@@ -15,7 +15,7 @@ public class loginFrame extends JFrame {
     private JPanel centerPanel;
     private JLabel labelLabel;
     private JLabel userNameLabel;
-    private JTextField usernameTextField;
+    private JTextField loginRegField;
     private JPasswordField passwordTextField;
     private JLabel passwordLabel;
     private JButton createNewAccountButton;
@@ -26,7 +26,8 @@ public class loginFrame extends JFrame {
     Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
     Font secondFont = new Font("Montserrat Medium", Font.BOLD, 14);
 
-    loginFrame() {
+    LoginFrame() {
+        this.setUndecorated(true);
         bbshopLabel.setForeground(Color.decode("0x616465"));
         bbshopLabel.setFont(labelFont);
 
@@ -56,7 +57,7 @@ public class loginFrame extends JFrame {
         setBounds(frameWidth / 3, frameHeight / 3, frameWidth / 3, frameHeight / 3);
 
         exitButtonSettings();
-        setUndecorated(true);
+
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,14 +67,14 @@ public class loginFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new registerWindow();
+                new RegisterFrame();
             }
         });
     }
 
     private boolean isClient() {
-        if(usernameTextField.getText().equals("Client")||usernameTextField.getText().equals("client"))return true;
-        if(usernameTextField.getText().equals("Service")||usernameTextField.getText().equals("service"))return false;
+        if(loginRegField.getText().equals("Client")|| loginRegField.getText().equals("client"))return true;
+        if(loginRegField.getText().equals("Service")|| loginRegField.getText().equals("service"))return false;
         return false;
     }
 
@@ -117,15 +118,15 @@ public class loginFrame extends JFrame {
         passwordLabel.setFont(secondFont);
         passwordLabel.setForeground(Color.decode("0x949494"));
 
-        usernameTextField.setBackground(Color.DARK_GRAY);
-        usernameTextField.setFont(secondFont);
-        usernameTextField.setForeground(Color.white);
-        usernameTextField.setCaretColor(Color.white);
-        usernameTextField.addMouseListener(new MouseListener() {
+        loginRegField.setBackground(Color.DARK_GRAY);
+        loginRegField.setFont(secondFont);
+        loginRegField.setForeground(Color.white);
+        loginRegField.setCaretColor(Color.white);
+        loginRegField.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (usernameTextField.getText().equals("Username")) usernameTextField.setCaretPosition(0);
-                if (usernameTextField.getText().equals("Username")) usernameTextField.setText("");
+                if (loginRegField.getText().equals("Username")) loginRegField.setCaretPosition(0);
+                if (loginRegField.getText().equals("Username")) loginRegField.setText("");
                 if (passwordTextField.getText().equals("")) passwordTextField.setText("Password");
             }
 
@@ -160,7 +161,7 @@ public class loginFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (passwordTextField.getText().equals("Username")) passwordTextField.setCaretPosition(0);
                 if (passwordTextField.getText().equals("Password")) passwordTextField.setText("");
-                if (usernameTextField.getText().equals("")) usernameTextField.setText("Username");
+                if (loginRegField.getText().equals("")) loginRegField.setText("Username");
             }
 
             @Override
@@ -183,13 +184,13 @@ public class loginFrame extends JFrame {
 
             }
         });
-        usernameTextField.addKeyListener(new KeyAdapter() {
+        loginRegField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (usernameTextField.getText().equals("Username")) usernameTextField.setText("");
-                if(usernameTextField.getText().length()>20){
-                    String temp = usernameTextField.getText().substring(0,usernameTextField.getText().length()-2);
-                    usernameTextField.setText(temp);
+                if (loginRegField.getText().equals("Username")) loginRegField.setText("");
+                if(loginRegField.getText().length()>20){
+                    String temp = loginRegField.getText().substring(0, loginRegField.getText().length()-2);
+                    loginRegField.setText(temp);
                 }
                 super.keyTyped(e);
             }
@@ -217,7 +218,7 @@ public class loginFrame extends JFrame {
         createNewAccountButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // new registerWindow();
+
             }
 
             @Override
@@ -261,7 +262,7 @@ public class loginFrame extends JFrame {
         }
         Image scaled = exitButtonImg.getScaledInstance(size.width, size.height, java.awt.Image.SCALE_SMOOTH);
         exitButton.setIcon(new ImageIcon(scaled));
-        exitButton.addActionListener(e -> System.exit(1));
+
         exitButton.setFocusable(false);
         exitButton.addMouseListener(new MouseListener() {
             @Override
