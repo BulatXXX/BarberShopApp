@@ -51,7 +51,8 @@ public class LoginFrame extends JFrame {
                 msgLabel.setText("Wrong login or password");
             } else {
                 setVisible(false);
-                new AppFrame(success);
+                User user = new User(loginField.getText(), success.contains("client"));
+                new AppFrame(user);
             }
         });
 
@@ -78,11 +79,7 @@ public class LoginFrame extends JFrame {
         });
     }
 
-    private boolean isClient(String client) {
-        if (client.equals("client")) return true;
-        if (client.equals("service")) return false;
-        return false;
-    }
+
 
     private void loginButtonSettings() {
         logInButton.setBackground(Color.decode("0x404040"));
