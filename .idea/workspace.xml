@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="OSTALOS OSNOVA">
-      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/people.txt" beforeDir="false" afterPath="$PROJECT_DIR$/people.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +33,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Spectra/IdeaProjects/Barbashop&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "226",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Spectra/IdeaProjects/Barbashop"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -88,7 +87,8 @@
       <workItem from="1668766258106" duration="89000" />
       <workItem from="1669201485885" duration="6307000" />
       <workItem from="1669209120092" duration="5829000" />
-      <workItem from="1670162353842" duration="11417000" />
+      <workItem from="1670162353842" duration="15238000" />
+      <workItem from="1670526980625" duration="3538000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -216,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669214992913</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="OSTALOS OSNOVA">
+      <created>1670174245101</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1670174245101</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

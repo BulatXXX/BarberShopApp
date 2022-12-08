@@ -11,9 +11,13 @@ import java.time.LocalDate;
 public class AppFrame extends JFrame {
     private JPanel panel1;
     private JPanel clientPanel;
+
     private JPanel servicePanel;
-    private JButton newsButton;
-    private JButton pricesButton;
+    private JPanel newsPanelService;
+    private JPanel schedulePanel;
+    private JPanel ratingsPanel;
+
+
     private JButton bookButton;
     private JButton newsButton1;
     private JButton scheduleButton;
@@ -23,17 +27,19 @@ public class AppFrame extends JFrame {
     private JButton exitButton;
     private JButton ratingsButton;
     private JPanel serviceTabsPanel;
-    private JPanel newsPanelService;
-    private JPanel schedulePanel;
-    private JPanel ratingsPanel;
+
     private JPanel buttonPanel2;
     private JButton exitClient;
     private JPanel clientProfilePanel;
     private JButton clientProfileButton;
     private JLabel piclabel;
-    private JLabel plabel;
-    private JPanel westBook;
-    private JPanel centerBook;
+
+    private JPanel centerBPan;
+    private JPanel sBPan;
+    private JPanel nBPan;
+    private JPanel eBpan;
+    private JPanel wBPan;
+
     private JButton bm1;
     private JButton bf1;
     private JButton bth1;
@@ -45,6 +51,11 @@ public class AppFrame extends JFrame {
     private JButton bth2;
     private JButton bf2;
     private JComboBox<String> comboBox1;
+    private JButton toBookButton;
+    private JLabel chooseTheHairdresserLabel;
+    private JPanel calendar;
+    private JPanel subNorthPan;
+    private JPanel timePan;
     private JButton btn10;
     private JButton btn14;
     private JButton btn12;
@@ -52,16 +63,17 @@ public class AppFrame extends JFrame {
     private JLabel tueLabel;
     private JLabel monLabel;
     private JLabel wedLabel;
-    private JButton bookBtn;
+
     private JLabel friLabel;
     private JLabel thuLabel;
     private JLabel timeLabel;
     private JLabel bookingLabel;
     private JLabel chosenDateLbl;
     private JLabel chosenTimeLbl;
-    private JLabel yourChoiseLable;
-    private JLabel datelbl;
+    private JLabel yourChoiceLable;
+    private JLabel dateLabel;
     private JLabel timelbl;
+    private JLabel masterLabel;
 
     private int chosenDate;
     private int chosenTime;
@@ -106,7 +118,14 @@ public class AppFrame extends JFrame {
             ratingsButton.addActionListener(e -> tabs.show(serviceTabsPanel, "ratings"));
         }
 
-
+        nBPan.setBackground(Color.darkGray);
+        eBpan.setBackground(Color.darkGray);
+        wBPan.setBackground(Color.darkGray);
+        centerBPan.setBackground(Color.darkGray);
+        subNorthPan.setBackground(Color.darkGray);
+        sBPan.setBackground(Color.darkGray);
+        calendar.setBackground(Color.darkGray);
+        timePan.setBackground(Color.darkGray);
 
         northPanelButtonSettings(bookButton);
         northPanelButtonSettings(newsButton1);
@@ -115,7 +134,7 @@ public class AppFrame extends JFrame {
         northPanelButtonSettings(clientProfileButton);
         northPanelButtonSettings(exitClient);
         bookPanel.setBackground(Color.darkGray);
-        centerBook.setBackground(Color.darkGray);
+
         comboBox1.setBackground(Color.darkGray);
         comboBox1.setFont(secondFont);
         comboBox1.setForeground(Color.BLACK);
@@ -135,20 +154,26 @@ public class AppFrame extends JFrame {
         chosenDateLbl.setForeground(Color.GRAY);
         chosenTimeLbl.setForeground(Color.GRAY);
         chosenTimeLbl.setText("10:00");
-        yourChoiseLable.setFont(secondFont);
-        yourChoiseLable.setForeground(Color.WHITE);
+        yourChoiceLable.setFont(secondFont);
+        yourChoiceLable.setForeground(Color.WHITE);
         chosenTimeLbl.setFont(secondFont);
         chosenDateLbl.setFont(secondFont);
-        datelbl.setFont(secondFont);
+        dateLabel.setFont(secondFont);
         timelbl.setFont(secondFont);
-        datelbl.setForeground(Color.WHITE);
+        dateLabel.setForeground(Color.WHITE);
         timelbl.setForeground(Color.WHITE);
         bookingLabel.setFont(labelFont);
         bookingLabel.setForeground(Color.white);
-        timeLabel.setFont(labelFont);
-        timeLabel.setForeground(Color.WHITE);
 
-
+        toBookButton.setFocusable(false);
+        toBookButton.setBackground(Color.darkGray);
+        toBookButton.setFont(secondFont);
+        toBookButton.setBorderPainted(true);
+        toBookButton.setForeground(Color.GRAY);
+        masterLabel.setFont(secondFont);
+        masterLabel.setForeground(Color.GRAY);
+        masterLabel.setText(comboBox1.getItemAt(0));
+        comboBox1.addActionListener(e -> masterLabel.setText(comboBox1.getItemAt(comboBox1.getSelectedIndex())));
         int count = 0;
         currentDate=currentDate.plusDays(4);
         for (JButton b : weeks){
@@ -230,13 +255,13 @@ public class AppFrame extends JFrame {
         return date;
     }
 
-    private void northPanelButtonSettings(JButton newsButton) {
-        newsButton.setFocusable(false);
-        newsButton.setBackground(Color.darkGray);
-        newsButton.setFont(secondFont);
-        newsButton.setForeground(Color.GRAY);
-        newsButton.setBorder(null);
-        newsButton.addMouseListener(new MouseListener() {
+    private void northPanelButtonSettings(JButton btn) {
+        btn.setFocusable(false);
+        btn.setBackground(Color.darkGray);
+        btn.setFont(secondFont);
+        btn.setForeground(Color.GRAY);
+        btn.setBorder(null);
+        btn.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // new registerWindow();
@@ -254,16 +279,17 @@ public class AppFrame extends JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                newsButton.setForeground(Color.white);
+                btn.setForeground(Color.white);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                newsButton.setForeground(Color.GRAY);
+                btn.setForeground(Color.GRAY);
             }
         });
 
     }
+
     public void fillComboBox(JComboBox comboBox1) {
         try {
 
