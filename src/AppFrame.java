@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -75,28 +74,90 @@ public class AppFrame extends JFrame {
     private JLabel masterLabel;
     private JLabel dateHeader;
     private JLabel timeHeader;
-    private JLabel loginName;
+    private JLabel loginNameLabel;
     private JLabel upcomingLabel;
     private JLabel hairdresserLabel;
     private JLabel bookedLabel;
-    private JComboBox comboBox2;
-    private JButton button1;
-    private JButton button2;
+    private JComboBox choosingDateCombobox;
+    private JButton actionButton;
+    private JButton cancelBookingButton;
     private JButton autoBook;
+    private JLabel upcomingMasterLbl;
+    private JLabel upcomingDateLbl;
+    private JLabel upcomingTimeLbl;
+    private JLabel upcomingDateHeader;
+    private JLabel upcomingTimeHeader;
+    private JLabel choosingDateLbl;
+    private JLabel urBookingLabel;
+    private JLabel bookedHairdresserLabel;
+    private JLabel bookedDateLabel;
+    private JLabel bookedTimeLabel;
+    JLabel[] daysOfWeek = {monLabel, tueLabel, wedLabel, thuLabel, friLabel};
+    JButton[] weeks = {bm1, btu1, bw1, bth1, bf1, bm2, btu2, bw2, bth2, bf2};
+    JButton[] time = {btn10, btn12, btn14, btn16};
+
+    JLabel[] profileHeaders = {hairdresserLabel, upcomingDateHeader, upcomingTimeHeader};
+    JLabel[] profileLabels = {upcomingMasterLbl, upcomingDateLbl, upcomingTimeLbl};
+    JLabel[] profileBookedLabels={ bookedHairdresserLabel, bookedDateLabel, bookedTimeLabel};
+    LocalDate currentDate = LocalDate.now(); // Gets the current currentDate
+    LocalDate monDate = getFirstMondayDate(currentDate);
 
     //For notes in file
     LocalDate chosenDateSup = LocalDate.now();
-
+    ArrayList<String> notes = getNotes();
     String chosenMasterSup;
     // For notes in file
 
-    private int chosenTime=10;
+    private int chosenTime = 10;
     private int chosenDate;
     Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
     Font secondFont = new Font("Montserrat Medium", Font.BOLD, 14);
 
     AppFrame(User user) {
 
+        appFrameInit(user);
+        bookPanelInit(user);
+        loginNameLabel.setForeground(Color.WHITE);
+        loginNameLabel.setFont(labelFont);
+        loginNameLabel.setText(user.login);
+        upcomingLabel.setForeground(Color.white);
+        upcomingLabel.setFont(labelFont);
+        choosingDateLbl.setForeground(Color.white);
+        choosingDateLbl.setFont(labelFont);
+        urBookingLabel.setForeground(Color.white);
+        urBookingLabel.setFont(labelFont);
+
+        for (JLabel label : profileLabels){
+            label.setFont(secondFont);
+            label.setForeground(Color.gray);
+        }
+        for (JLabel label : profileHeaders){
+            label.setFont(secondFont);
+            label.setForeground(Color.white);
+        }
+        for (JLabel label : profileBookedLabels){
+            label.setFont(secondFont);
+            label.setForeground(Color.gray);
+        }
+
+        ArrayList<String> userBooks = new ArrayList<>();
+        for (int i = 0; i < notes.size(); i++) {
+            if (notes.get(i).split(" ")[0].equals(user.login)) {
+                userBooks.add(notes.get(i));
+            }
+        }
+        if(userBooks.size()<2){
+            for (JLabel label : profileBookedLabels){
+                label.setVisible(false);
+            }
+            choosingDateLbl.setVisible(false);
+            choosingDateCombobox.setVisible(false);
+        }
+
+
+    }
+
+    private void appFrameInit(User user) {
         exitButton.addActionListener(e -> System.exit(2));
         setUndecorated(true);
         setVisible(true);
@@ -126,20 +187,16 @@ public class AppFrame extends JFrame {
             scheduleButton.addActionListener(e -> tabs.show(serviceTabsPanel, "schedule"));
             ratingsButton.addActionListener(e -> tabs.show(serviceTabsPanel, "ratings"));
         }
+        exitClient.addActionListener(e -> System.exit(0));
+        buttonPanel.setBackground(Color.darkGray);
+        buttonPanel2.setBackground(Color.darkGray);
+    }
 
+    private void bookPanelInit(User user) {
         bookPanelsSettings();
-
         headerButtonsSettings();
 
 
-        comboboxInit();
-        ArrayList<String> notes = getNotes();
-
-        JLabel[] daysOfWeek = {monLabel, tueLabel, wedLabel, thuLabel, friLabel};
-        JButton[] weeks = {bm1, btu1, bw1, bth1, bf1, bm2, btu2, bw2, bth2, bf2};
-        JButton[] time = {btn10, btn12, btn14, btn16};
-        LocalDate currentDate = LocalDate.now(); // Gets the current currentDate
-        LocalDate monDate = getFirstMondayDate(currentDate);
         chosenDateLbl.setText(currentDate.toString());
         chosenDateLbl.setForeground(Color.GRAY);
         chosenTimeLbl.setForeground(Color.GRAY);
@@ -159,20 +216,12 @@ public class AppFrame extends JFrame {
         bookedLabel.setFont(secondFont);
         bookedLabel.setForeground(Color.darkGray);
 
-        toBookButton.setFocusable(false);
-        toBookButton.setBackground(Color.darkGray);
-        toBookButton.setFont(secondFont);
-        toBookButton.setBorderPainted(true);
-        toBookButton.setForeground(Color.GRAY);
+
         masterLabel.setFont(secondFont);
         masterLabel.setForeground(Color.GRAY);
         masterLabel.setText(comboBox1.getItemAt(0));
         chosenMasterSup = comboBox1.getItemAt(0);
-        comboBox1.addActionListener(e -> {
-            chosenMasterSup = comboBox1.getItemAt(comboBox1.getSelectedIndex());
-            masterLabel.setText(chosenMasterSup);
-            changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
-        });
+
         bookedLabel.setFont(secondFont);
         dateHeader.setForeground(Color.white);
         dateHeader.setFont(secondFont);
@@ -182,21 +231,56 @@ public class AppFrame extends JFrame {
         chooseTheHairdresserLabel.setFont(secondFont);
         int count = 0;
 
+        comboboxInit(time);
         weeksButtonsSettings(notes, weeks, time, currentDate, monDate, count);
-
         changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+        autoBookButtonInit(user, notes, time);
+        daysOfWeekInit(daysOfWeek);
+        toBookButtonInit(user, time);
+    }
+
+    private void toBookButtonInit(User user, JButton[] time) {
+        toBookButton.setFocusable(false);
+        toBookButton.setBackground(Color.darkGray);
+        toBookButton.setFont(secondFont);
+        toBookButton.setBorderPainted(true);
+        toBookButton.setForeground(Color.GRAY);
+        toBookButton.addActionListener(e -> {
+                    boolean check = checkBooking(chosenTime, chosenDateSup, chosenMasterSup, notes);
+                    if (check) {
+                        createNewNote(user.login, chosenTime, chosenDateSup, chosenMasterSup);
+                        bookedLabel.setForeground(Color.green);
+                        bookedLabel.setText("Success");
+                        notes.add(user.login + " " + chosenMasterSup + " " + chosenDateSup.toString() + " " + Integer.toString(chosenTime));
+                        changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+                    } else {
+                        bookedLabel.setForeground(Color.red);
+                        bookedLabel.setText("Error");
+                    }
+                }
+        );
+    }
+
+    private void daysOfWeekInit(JLabel[] daysOfWeek) {
+        for (JLabel label : daysOfWeek) {
+            label.setFont(secondFont);
+            label.setForeground(Color.WHITE);
+        }
+    }
+
+    private void autoBookButtonInit(User user, ArrayList<String> notes, JButton[] time) {
         autoBook.setForeground(Color.GRAY);
         autoBook.setFont(secondFont);
         autoBook.setFocusable(false);
         autoBook.setBackground(Color.darkGray);
-        autoBook.addActionListener(e->{
+        autoBook.addActionListener(e -> {
             LocalDate firstMon = getFirstMondayDate(LocalDate.now());
 
             LocalDate currentDay = LocalDate.now();
-            if(currentDay.getDayOfWeek()==DayOfWeek.SATURDAY || currentDay.getDayOfWeek()==DayOfWeek.SUNDAY){
+            if (currentDay.getDayOfWeek() == DayOfWeek.SATURDAY || currentDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
                 currentDay = firstMon;
             }
-            int lastDay = firstMon.getDayOfMonth()+11;
+            int lastDay = firstMon.getDayOfMonth() + 11;
 
 
             ArrayList<String> masters = new ArrayList<>();
@@ -207,79 +291,77 @@ public class AppFrame extends JFrame {
                 masters.add(comboBox1.getItemAt(i));
             }
 
-            for (int i = currentDay.getDayOfMonth(); i < lastDay+1; i++) {
-                if(i==currentDay.getDayOfMonth()+5 || i==currentDay.getDayOfMonth()+6){continue;}
+            for (int i = currentDay.getDayOfMonth(); i < lastDay + 1; i++) {
+                if (i == currentDay.getDayOfMonth() + 5 || i == currentDay.getDayOfMonth() + 6) {
+                    continue;
+                }
                 dates.add(i);
             }
-            for (int i = 10; i < 17; i+=2) {
+            for (int i = 10; i < 17; i += 2) {
                 times.add(i);
             }
-            currentDay=LocalDate.now();
+            currentDay = LocalDate.now();
 
 
-            int randomMaster = (int)(Math.random()*(masters.size()));
-            int randomDay = (int)(Math.random()*(dates.size()));
-            int randomTime = (int)(Math.random()*(4));
-            LocalDate randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
+            int randomMaster = (int) (Math.random() * (masters.size()));
+            int randomDay = (int) (Math.random() * (dates.size()));
+            int randomTime = (int) (Math.random() * (4));
+            LocalDate randomDate = currentDay.minusDays(currentDay.getDayOfMonth() - 1).plusDays(dates.get(randomDay) - 1);
 
             int counter = 0;
-            while(!checkBooking(times.get(randomTime),randomDate,masters.get(randomMaster),notes)){
-                randomMaster = (int)(Math.random()*(masters.size()));
-                randomDay = (int)(Math.random()*(dates.size()));
-                randomTime = (int)(Math.random()*(4));
-                randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
-                if(counter>300){
+            while (!checkBooking(times.get(randomTime), randomDate, masters.get(randomMaster), notes)) {
+                randomMaster = (int) (Math.random() * (masters.size()));
+                randomDay = (int) (Math.random() * (dates.size()));
+                randomTime = (int) (Math.random() * (4));
+                randomDate = currentDay.minusDays(currentDay.getDayOfMonth() - 1).plusDays(dates.get(randomDay) - 1);
+                if (counter > 300) {
                     break;
                 }
                 counter++;
             }
-            if(counter<300){
-            chosenTime=times.get(randomTime);
-            chosenDateSup=randomDate;
-            chosenMasterSup=masters.get(randomMaster);
+            if (counter < 300) {
+                chosenTime = times.get(randomTime);
+                chosenDateSup = randomDate;
+                chosenMasterSup = masters.get(randomMaster);
 
-            masterLabel.setText(chosenMasterSup);
-            chosenDateLbl.setText(chosenDateSup.toString());
-            String chosenTimeStr = Integer.toString(chosenTime)+":";
-            if(chosenTime<13){
-                chosenTimeStr+="00";
-            }else chosenTimeStr+="30";
-            chosenTimeLbl.setText(chosenTimeStr);
+                masterLabel.setText(chosenMasterSup);
+                chosenDateLbl.setText(chosenDateSup.toString());
+                String chosenTimeStr = Integer.toString(chosenTime) + ":";
+                if (chosenTime < 13) {
+                    chosenTimeStr += "00";
+                } else chosenTimeStr += "30";
+                chosenTimeLbl.setText(chosenTimeStr);
 
-            createNewNote(user.login,chosenTime,chosenDateSup,chosenMasterSup);
-            bookedLabel.setForeground(Color.green);
-            bookedLabel.setText("Success");
-            notes.add(user.login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+ chosenTime);
-            changeTimeButtonsSettings(time,chosenDateSup,chosenMasterSup,notes);
-            }
-            else {
+                createNewNote(user.login, chosenTime, chosenDateSup, chosenMasterSup);
+                bookedLabel.setForeground(Color.green);
+                bookedLabel.setText("Success");
+                notes.add(user.login + " " + chosenMasterSup + " " + chosenDateSup.toString() + " " + chosenTime);
+                changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+            } else {
                 bookedLabel.setForeground(Color.red);
                 bookedLabel.setText("Error try next week");
             }
+            changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+            changeInterface(weeks, time, comboBox1, chosenTime, chosenDateSup, chosenMasterSup);
         });
-        for (JLabel label : daysOfWeek) {
-            label.setFont(secondFont);
-            label.setForeground(Color.WHITE);
-        }
-        toBookButton.addActionListener(e -> {
-            boolean check = checkBooking(chosenTime,chosenDateSup,chosenMasterSup,notes);
-            if(check){
-                createNewNote(user.login,chosenTime,chosenDateSup,chosenMasterSup);
-                bookedLabel.setForeground(Color.green);
-                bookedLabel.setText("Success");
-                notes.add(user.login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+Integer.toString(chosenTime));
-                changeTimeButtonsSettings(time,chosenDateSup,chosenMasterSup,notes);
-            }
-            else {
-                bookedLabel.setForeground(Color.red);
-                bookedLabel.setText("Error");
-            }
-            }
-        );
-        exitClient.addActionListener(e -> System.exit(0));
-        buttonPanel.setBackground(Color.darkGray);
-        buttonPanel2.setBackground(Color.darkGray);
+    }
 
+    private void changeInterface(JButton[] weeks, JButton[] time, JComboBox<String> comboBox1, int chosenTime, LocalDate chosenDateSup, String chosenMasterSup) {
+        for (int i = 0; i < weeks.length; i++) {
+            if (weeks[i].getText().equals(chosenDateSup.toString())) {
+                weeks[i].setBackground(Color.orange);
+            }
+        }
+        for (int i = 0; i < time.length; i++) {
+            if (time[i].getText().substring(2).equals(Integer.toString(chosenTime))) {
+                time[i].setBackground(Color.orange);
+            }
+        }
+        for (int i = 0; i < comboBox1.getItemCount(); i++) {
+            if (comboBox1.getItemAt(i).equals(chosenMasterSup)) {
+                comboBox1.setSelectedIndex(i);
+            }
+        }
     }
 
     private void weeksButtonsSettings(ArrayList<String> notes, JButton[] weeks, JButton[] time, LocalDate currentDate, LocalDate monDate, int count) {
@@ -294,6 +376,7 @@ public class AppFrame extends JFrame {
                     chosenDateLbl.setText(temp.toString());
                     chosenDateSup = temp;
                     changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+                    changeInterface(weeks, time, comboBox1, chosenTime, chosenDateSup, chosenMasterSup);
                 });
             }
             b.setText(Integer.toString(monDate.getDayOfMonth()));
@@ -304,22 +387,23 @@ public class AppFrame extends JFrame {
 
     private void createNewNote(String login, int chosenTime, LocalDate chosenDateSup, String chosenMasterSup) {
         try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
-                String string ="\n"+login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+ chosenTime;
-                fileWriter.write(string);
+            String string = "\n" + login + " " + chosenMasterSup + " " + chosenDateSup.toString() + " " + chosenTime;
+            fileWriter.write(string);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
 
-    private boolean checkBooking(int chosenTime,LocalDate chosenDateSup, String chosenMasterSup, ArrayList<String> notes){
+    private boolean checkBooking(int chosenTime, LocalDate chosenDateSup, String chosenMasterSup, ArrayList<String> notes) {
         for (int i = 0; i < notes.size(); i++) {
             String[] list = notes.get(i).split(" ");
-            if(list[1].equals(chosenMasterSup) && list[2].equals(chosenDateSup.toString()) && list[3].equals(Integer.toString(chosenTime))){
+            if (list[1].equals(chosenMasterSup) && list[2].equals(chosenDateSup.toString()) && list[3].equals(Integer.toString(chosenTime))) {
                 return false;
             }
         }
         return true;
     }
+
     private void changeTimeButtonsSettings(JButton[] time, LocalDate chosenDateSup, String chosenMasterSup, ArrayList<String> notes) {
         boolean[] isBooked = {false, false, false, false};
 
@@ -383,6 +467,7 @@ public class AppFrame extends JFrame {
         if (isBooked) {
             color = Color.BLACK;
         } else color = Color.GRAY;
+
         b.setFont(secondFont);
         b.setForeground(color);
         b.setBackground(Color.darkGray);
@@ -417,13 +502,18 @@ public class AppFrame extends JFrame {
 
     }
 
-    private void comboboxInit() {
+    private void comboboxInit(JButton[] time) {
         comboBox1.setBackground(Color.darkGray);
         comboBox1.setFont(secondFont);
         comboBox1.setForeground(Color.BLACK);
         comboBox1.setBorder(null);
         comboBox1.setFocusable(false);
-
+        comboBox1.addActionListener(e -> {
+            chosenMasterSup = comboBox1.getItemAt(comboBox1.getSelectedIndex());
+            masterLabel.setText(chosenMasterSup);
+            changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+            changeInterface(weeks, time, comboBox1, chosenTime, chosenDateSup, chosenMasterSup);
+        });
 
         fillComboBox(comboBox1);
     }
@@ -464,7 +554,10 @@ public class AppFrame extends JFrame {
                 b.setForeground(color);
             }
         });
-        b.addActionListener(e -> chosenDate = Integer.parseInt(b.getText()));
+        b.addActionListener(e -> {
+            chosenDate = Integer.parseInt(b.getText());
+            changeInterface(weeks, time, comboBox1, chosenTime, chosenDateSup, chosenMasterSup);
+        });
     }
 
     private static LocalDate getFirstMondayDate(LocalDate date) {
