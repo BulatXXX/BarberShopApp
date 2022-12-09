@@ -1,7 +1,6 @@
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.*;
@@ -80,6 +79,10 @@ public class AppFrame extends JFrame {
     private JLabel upcomingLabel;
     private JLabel hairdresserLabel;
     private JLabel bookedLabel;
+    private JComboBox comboBox2;
+    private JButton button1;
+    private JButton button2;
+    private JButton autoBook;
 
     //For notes in file
     LocalDate chosenDateSup = LocalDate.now();
@@ -152,6 +155,9 @@ public class AppFrame extends JFrame {
         bookingLabel.setFont(labelFont);
         bookingLabel.setForeground(Color.white);
 
+        bookedLabel.setText("Success");
+        bookedLabel.setFont(secondFont);
+        bookedLabel.setForeground(Color.darkGray);
 
         toBookButton.setFocusable(false);
         toBookButton.setBackground(Color.darkGray);
@@ -176,25 +182,71 @@ public class AppFrame extends JFrame {
         chooseTheHairdresserLabel.setFont(secondFont);
         int count = 0;
 
-        for (JButton b : weeks) {
-            int isToday = monDate.compareTo(currentDate);
-            count++;
-            weeksButtonSettings(b, isToday >= 0);
-            if (isToday >= 0) {
-                b.addActionListener(e -> {
-                    LocalDate temp = currentDate;
-                    temp = temp.plusDays(isToday);
-                    chosenDateLbl.setText(temp.toString());
-                    chosenDateSup = temp;
-                    changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
-                });
-            }
-            b.setText(Integer.toString(monDate.getDayOfMonth()));
-            if (count == 5) monDate = monDate.plusDays(3);
-            else monDate = monDate.plusDays(1);
-        }
+        weeksButtonsSettings(notes, weeks, time, currentDate, monDate, count);
 
         changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+        autoBook.setForeground(Color.GRAY);
+        autoBook.setFont(secondFont);
+        autoBook.setFocusable(false);
+        autoBook.setBackground(Color.darkGray);
+        autoBook.addActionListener(e->{
+            LocalDate firstMon = getFirstMondayDate(LocalDate.now());
+
+            LocalDate currentDay = LocalDate.now();
+            if(currentDay.getDayOfWeek()==DayOfWeek.SATURDAY || currentDay.getDayOfWeek()==DayOfWeek.SUNDAY){
+                currentDay = firstMon;
+            }
+            int lastDay = firstMon.getDayOfMonth()+11;
+
+
+            ArrayList<String> masters = new ArrayList<>();
+            ArrayList<Integer> dates = new ArrayList<>();
+            ArrayList<Integer> times = new ArrayList<>();
+
+            for (int i = 0; i < comboBox1.getItemCount(); i++) {
+                masters.add(comboBox1.getItemAt(i));
+            }
+
+            for (int i = currentDay.getDayOfMonth(); i < lastDay+1; i++) {
+                if(i==currentDay.getDayOfMonth()+5 || i==currentDay.getDayOfMonth()+6){continue;}
+                dates.add(i);
+            }
+            for (int i = 10; i < 17; i+=2) {
+                times.add(i);
+            }
+            currentDay=LocalDate.now();
+
+
+            int randomMaster = (int)(Math.random()*(masters.size()));
+            int randomDay = (int)(Math.random()*(dates.size()));
+            int randomTime = (int)(Math.random()*(4));
+            LocalDate randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
+
+
+            while(!checkBooking(times.get(randomTime),randomDate,masters.get(randomMaster),notes)){
+                randomMaster = (int)(Math.random()*(masters.size()));
+                randomDay = (int)(Math.random()*(dates.size()));
+                randomTime = (int)(Math.random()*(4));
+                randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
+            }
+            chosenTime=times.get(randomTime);
+            chosenDateSup=randomDate;
+            chosenMasterSup=masters.get(randomMaster);
+
+            masterLabel.setText(chosenMasterSup);
+            chosenDateLbl.setText(chosenDateSup.toString());
+            String chosenTimeStr = Integer.toString(chosenTime)+":";
+            if(chosenTime<13){
+                chosenTimeStr+="00";
+            }else chosenTimeStr+="30";
+            chosenTimeLbl.setText(chosenTimeStr);
+
+            createNewNote(user.login,chosenTime,chosenDateSup,chosenMasterSup);
+            bookedLabel.setForeground(Color.green);
+            bookedLabel.setText("Success");
+            notes.add(user.login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+Integer.toString(chosenTime));
+            changeTimeButtonsSettings(time,chosenDateSup,chosenMasterSup,notes);
+        });
         for (JLabel label : daysOfWeek) {
             label.setFont(secondFont);
             label.setForeground(Color.WHITE);
@@ -218,6 +270,26 @@ public class AppFrame extends JFrame {
         buttonPanel.setBackground(Color.darkGray);
         buttonPanel2.setBackground(Color.darkGray);
 
+    }
+
+    private void weeksButtonsSettings(ArrayList<String> notes, JButton[] weeks, JButton[] time, LocalDate currentDate, LocalDate monDate, int count) {
+        for (JButton b : weeks) {
+            int isToday = monDate.compareTo(currentDate);
+            count++;
+            weeksButtonSettings(b, isToday >= 0);
+            if (isToday >= 0) {
+                b.addActionListener(e -> {
+                    LocalDate temp = currentDate;
+                    temp = temp.plusDays(isToday);
+                    chosenDateLbl.setText(temp.toString());
+                    chosenDateSup = temp;
+                    changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+                });
+            }
+            b.setText(Integer.toString(monDate.getDayOfMonth()));
+            if (count == 5) monDate = monDate.plusDays(3);
+            else monDate = monDate.plusDays(1);
+        }
     }
 
     private void createNewNote(String login, int chosenTime, LocalDate chosenDateSup, String chosenMasterSup) {
