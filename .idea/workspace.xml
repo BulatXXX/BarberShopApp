@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="made booking window">
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="ideal booking window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
@@ -90,7 +90,7 @@
       <workItem from="1669209120092" duration="5829000" />
       <workItem from="1670162353842" duration="15238000" />
       <workItem from="1670526980625" duration="11475000" />
-      <workItem from="1670596074928" duration="12758000" />
+      <workItem from="1670596074928" duration="13473000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -239,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670611585467</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ideal booking window">
+      <created>1670621532747</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1670621532747</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +289,7 @@
     <MESSAGE value="OSTALOS OSNOVA" />
     <MESSAGE value="Zbs" />
     <MESSAGE value="made booking window" />
-    <option name="LAST_COMMIT_MESSAGE" value="made booking window" />
+    <MESSAGE value="ideal booking window" />
+    <option name="LAST_COMMIT_MESSAGE" value="ideal booking window" />
   </component>
 </project>

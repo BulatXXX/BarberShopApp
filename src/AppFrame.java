@@ -222,13 +222,18 @@ public class AppFrame extends JFrame {
             int randomTime = (int)(Math.random()*(4));
             LocalDate randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
 
-
+            int counter = 0;
             while(!checkBooking(times.get(randomTime),randomDate,masters.get(randomMaster),notes)){
                 randomMaster = (int)(Math.random()*(masters.size()));
                 randomDay = (int)(Math.random()*(dates.size()));
                 randomTime = (int)(Math.random()*(4));
                 randomDate = currentDay.minusDays(currentDay.getDayOfMonth()-1).plusDays(dates.get(randomDay)-1);
+                if(counter>300){
+                    break;
+                }
+                counter++;
             }
+            if(counter<300){
             chosenTime=times.get(randomTime);
             chosenDateSup=randomDate;
             chosenMasterSup=masters.get(randomMaster);
@@ -244,8 +249,13 @@ public class AppFrame extends JFrame {
             createNewNote(user.login,chosenTime,chosenDateSup,chosenMasterSup);
             bookedLabel.setForeground(Color.green);
             bookedLabel.setText("Success");
-            notes.add(user.login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+Integer.toString(chosenTime));
+            notes.add(user.login+" "+chosenMasterSup+" "+chosenDateSup.toString()+" "+ chosenTime);
             changeTimeButtonsSettings(time,chosenDateSup,chosenMasterSup,notes);
+            }
+            else {
+                bookedLabel.setForeground(Color.red);
+                bookedLabel.setText("Error try next week");
+            }
         });
         for (JLabel label : daysOfWeek) {
             label.setFont(secondFont);

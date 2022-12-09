@@ -417,7 +417,7 @@
                               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
-                              <text value=""/>
+                              <text value="Button"/>
                             </properties>
                           </component>
                           <component id="5b1dd" class="javax.swing.JButton" binding="bth1">
@@ -425,7 +425,7 @@
                               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                             </constraints>
                             <properties>
-                              <text value=""/>
+                              <text value="Button"/>
                             </properties>
                           </component>
                           <component id="2bdb7" class="javax.swing.JButton" binding="bf1">
