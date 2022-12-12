@@ -6,19 +6,19 @@ import java.io.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AppFrame extends JFrame {
     private JPanel panel1;
     private JPanel clientPanel;
 
     private JPanel servicePanel;
-    private JPanel newsPanelService;
     private JPanel schedulePanel;
     private JPanel ratingsPanel;
 
 
     private JButton bookButton;
-    private JButton newsButton1;
+
     private JButton scheduleButton;
     private JPanel clientTabsPanel;
     private JPanel bookPanel;
@@ -78,7 +78,7 @@ public class AppFrame extends JFrame {
     private JLabel upcomingLabel;
     private JLabel hairdresserLabel;
     private JLabel bookedLabel;
-    private JComboBox choosingDateCombobox;
+    private JComboBox<String> choosingDateCombobox;
     private JButton actionButton;
     private JButton cancelBookingButton;
     private JButton autoBook;
@@ -88,17 +88,53 @@ public class AppFrame extends JFrame {
     private JLabel upcomingDateHeader;
     private JLabel upcomingTimeHeader;
     private JLabel choosingDateLbl;
-    private JLabel urBookingLabel;
-    private JLabel bookedHairdresserLabel;
-    private JLabel bookedDateLabel;
-    private JLabel bookedTimeLabel;
+    private JLabel successProfileLabel;
+    private JPanel centralSchedulePanel;
+    private JButton b6;
+    private JButton b7;
+    private JButton b8;
+    private JButton b9;
+    private JButton b10;
+    private JButton b1;
+    private JButton b2;
+    private JButton b3;
+    private JButton b4;
+    private JButton b5;
+    private JPanel calendarPanel;
+    private JPanel timePanel;
+    private JButton a1000Button;
+    private JButton a1430Button;
+    private JButton a1200Button;
+    private JButton a1630Button;
+    private JLabel mondayLabel;
+    private JLabel tuesdayLabel;
+    private JLabel wednesdayLabel;
+    private JLabel thursdayLabel;
+    private JLabel fridayLabel;
+    private JButton takeadayoffBtn;
+    private JButton takeABreakButton;
+    private JLabel urclientlbl1;
+    private JLabel urclientlbl2;
+    private JLabel urclientlbl3;
+    private JLabel urclientlbl4;
+    private JLabel urclient1;
+    private JLabel urclient2;
+    private JLabel urclient3;
+    private JLabel urclient4;
+    private JLabel chooseDayLbl;
+    private JLabel chooseTimeLbl;
+    private JLabel dayOffLbl;
+    private JLabel breakLbl;
     JLabel[] daysOfWeek = {monLabel, tueLabel, wedLabel, thuLabel, friLabel};
     JButton[] weeks = {bm1, btu1, bw1, bth1, bf1, bm2, btu2, bw2, bth2, bf2};
     JButton[] time = {btn10, btn12, btn14, btn16};
 
     JLabel[] profileHeaders = {hairdresserLabel, upcomingDateHeader, upcomingTimeHeader};
     JLabel[] profileLabels = {upcomingMasterLbl, upcomingDateLbl, upcomingTimeLbl};
-    JLabel[] profileBookedLabels={ bookedHairdresserLabel, bookedDateLabel, bookedTimeLabel};
+    JButton[] calendarButtons = {b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};
+    JButton[] timeButtons = {a1000Button,a1200Button,a1430Button,a1630Button};
+    JLabel[] urClientLbl = {urclientlbl1,urclientlbl2,urclientlbl3,urclientlbl4};
+    JLabel[] clientsLabels = {urclient1,urclient2,urclient3,urclient4};
     LocalDate currentDate = LocalDate.now(); // Gets the current currentDate
     LocalDate monDate = getFirstMondayDate(currentDate);
 
@@ -107,7 +143,7 @@ public class AppFrame extends JFrame {
     ArrayList<String> notes = getNotes();
     String chosenMasterSup;
     // For notes in file
-
+    ArrayList<String> userBooks = new ArrayList<>();
     private int chosenTime = 10;
     private int chosenDate;
     Font labelFont = new Font("Montserrat Medium", Font.BOLD, 18);
@@ -117,6 +153,318 @@ public class AppFrame extends JFrame {
 
         appFrameInit(user);
         bookPanelInit(user);
+        profilePanelInit(user);
+        servicePanel.setBackground(Color.darkGray);
+        schedulePanel.setBackground(Color.darkGray);
+        centralSchedulePanel.setBackground(Color.darkGray);
+        timePanel.setBackground(Color.darkGray);
+        calendarPanel.setBackground(Color.darkGray);
+        chooseDayLbl.setFont(labelFont);
+        chooseDayLbl.setForeground(Color.WHITE);
+        chooseTimeLbl.setFont(labelFont);
+        chooseTimeLbl.setForeground(Color.white);
+        dayOffLbl.setForeground(Color.darkGray);
+        dayOffLbl.setFont(secondFont);
+        breakLbl.setForeground(Color.darkGray);
+        breakLbl.setFont(secondFont);
+
+        JLabel[] weekdays = {mondayLabel,tuesdayLabel,wednesdayLabel,thursdayLabel,fridayLabel};
+        for (JLabel label:weekdays){
+            label.setFont(labelFont);
+            label.setForeground(Color.white);
+        }
+
+        ArrayList<String> hairdresserNotes = new ArrayList<>();
+        getHairdresserNotes(user, hairdresserNotes);
+        LocalDate today = LocalDate.now();
+        LocalDate monday = getFirstMondayDate(today);
+        int dayCounter = 0;
+        setWeeksButtons(calendarButtons, hairdresserNotes, monday, dayCounter);
+        setTimeButtons(timeButtons, hairdresserNotes);
+        setWeekButtonsListeners(calendarButtons, hairdresserNotes, monday);
+        setTimeButtonsListeners(hairdresserNotes);
+
+
+        for (JLabel lbl : urClientLbl){
+            lbl.setFont(secondFont);
+            lbl.setForeground(Color.white);
+        }
+        setClients(clientsLabels, hairdresserNotes);
+
+
+        takeadayoffBtn.setForeground(Color.gray);
+        takeadayoffBtn.setFont(secondFont);
+        takeadayoffBtn.setBackground(Color.darkGray);
+        takeadayoffBtn.setFocusable(false);
+        takeABreakButton.setForeground(Color.gray);
+        takeABreakButton.setFont(secondFont);
+        takeABreakButton.setBackground(Color.darkGray);
+        takeABreakButton.setFocusable(false);
+        takeadayoffBtn.addActionListener(e->{
+            if(checkFree(user,"all")){
+                try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
+                    fileWriter.write("\nBREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"10"+"\n");
+                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"12"+"\n");
+                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"14"+"\n");
+                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"16");
+                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"10");
+                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"12");
+                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"14");
+                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"16");
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+                dayOffLbl.setForeground(Color.green);
+                dayOffLbl.setText("Success");
+            }
+            else{
+                dayOffLbl.setForeground(Color.red);
+                dayOffLbl.setText("Error");
+            }
+            setWeeksButtons(calendarButtons, hairdresserNotes, monday, dayCounter);
+            setTimeButtons(timeButtons, hairdresserNotes);
+            setClients(clientsLabels,hairdresserNotes);
+        });
+        takeABreakButton.addActionListener(e->{
+            if(checkFree(user)){
+                try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
+                    fileWriter.write("\nBREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+chosenTime);
+                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+chosenTime);
+
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+                breakLbl.setForeground(Color.green);
+                breakLbl.setText("Success");
+
+            }else {
+            breakLbl.setForeground(Color.red);
+            breakLbl.setText("Error");}
+            setWeeksButtons(calendarButtons, hairdresserNotes, monday, dayCounter);
+            setTimeButtons(timeButtons, hairdresserNotes);
+            setClients(clientsLabels,hairdresserNotes);
+        });
+
+
+    }
+    private boolean checkFree(User user,String all) {
+        try {
+            String[] list;
+            File file = new File("notes.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                list = line.split(" ");
+                if(list[1].equals(user.login)&&list[2].equals(chosenDateSup.toString()))
+                    return false;
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
+    private boolean checkFree(User user) {
+        try {
+            String[] list;
+            File file = new File("notes.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                list = line.split(" ");
+                if(list[1].equals(user.login)&&list[2].equals(chosenDateSup.toString())&&list[3].equals(Integer.toString(chosenTime)))
+                    return false;
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
+
+    private void setTimeButtonsListeners(ArrayList<String> hairdresserNotes) {
+        for (JButton b : timeButtons){
+            final Color color = b.getForeground();
+            b.addMouseListener(new MouseListener() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    b.setForeground(Color.WHITE);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if(!(chosenTime ==Integer.parseInt(b.getText().substring(0,2))))b.setForeground(color);
+                }
+            });
+            b.addActionListener(e->{
+                chosenTime = Integer.parseInt(b.getText().substring(0,2));
+                b.setForeground(Color.white);
+                setTimeButtons(timeButtons, hairdresserNotes);
+                setClients(clientsLabels, hairdresserNotes);
+            });
+        }
+    }
+
+    private void setClients(JLabel[] clientsLabels, ArrayList<String> hairdresserNotes) {
+        int t = 10;
+        for (JLabel lbl : clientsLabels){
+            lbl.setFont(secondFont);
+            lbl.setText(checkNote(hairdresserNotes,chosenDateSup.toString(),t));
+            if(lbl.getText().equals("NONE")||lbl.getText().equals("BREAK")) lbl.setForeground(Color.gray);
+            else {lbl.setForeground(Color.white);}
+            t+=2;
+
+        }
+    }
+
+    private void setTimeButtons(JButton[] timeButtons, ArrayList<String> hairdresserNotes) {
+        for (JButton b : timeButtons){
+            b.setFont(secondFont);
+            b.setBackground(Color.darkGray);
+            b.setFocusable(false);
+            b.setBorder(null);
+            String check = (checkNote(hairdresserNotes,chosenDateSup.toString(),Integer.parseInt(b.getText().substring(0,2))));
+            if(check.equals("NONE")&&!(chosenTime==Integer.parseInt(b.getText().substring(0,2)))){b.setForeground(Color.gray);}
+            else if(chosenTime==Integer.parseInt(b.getText().substring(0,2))){b.setForeground(Color.white);}
+            else {b.setForeground(Color.black);}
+        }
+    }
+
+    private void setWeekButtonsListeners(JButton[] calendarButtons, ArrayList<String> hairdresserNotes, LocalDate monday) {
+        for (JButton b: calendarButtons){
+            final Color color = b.getForeground();
+
+            b.addMouseListener(new MouseListener() {
+
+                @Override
+                public void mouseClicked(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    b.setForeground(Color.WHITE);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    if(!b.getText().equals(chosenDateSup.toString().substring(8))) b.setForeground(color);
+                }
+            });
+            b.addActionListener(e->{
+                LocalDate firstDay = LocalDate.now().minusDays(LocalDate.now().getDayOfMonth()-1);
+                firstDay = firstDay.plusDays(Integer.parseInt(b.getText())-1);
+                chosenDateSup = firstDay;
+                b.setForeground(Color.white);
+                int c = 0;
+                setTimeButtons(timeButtons, hairdresserNotes);
+                setClients(clientsLabels,hairdresserNotes);
+                setWeeksButtons(calendarButtons, hairdresserNotes, monday,c);
+
+
+            });
+        }
+    }
+
+    private void setWeeksButtons(JButton[] calendarButtons, ArrayList<String> hairdresserNotes, LocalDate monday, int dayCounter) {
+        for (JButton b : calendarButtons){
+            b.setText(Integer.toString(monday.getDayOfMonth()+ dayCounter));
+            if (checkNoteDay(hairdresserNotes, b.getText())&&!b.getText().equals(chosenDateSup.toString().substring(8))) {
+                b.setForeground(Color.BLACK);
+            }else if(b.getText().equals(chosenDateSup.toString().substring(8))){
+                b.setForeground(Color.white);
+            }
+            else b.setForeground(Color.gray);
+            dayCounter++;
+            if(dayCounter ==5) dayCounter +=2;
+            b.setFocusable(false);
+            b.setBackground(Color.darkGray);
+            b.setBorder(null);
+            b.setFont(secondFont);
+
+        }
+    }
+
+    private static String checkNote(ArrayList<String> hairdresserNotes, String day,int time) {
+        for (int i = 0; i < hairdresserNotes.size(); i++) {
+            if(hairdresserNotes.get(i).split(" ")[2].equals(day) && hairdresserNotes.get(i).split(" ")[3].equals(Integer.toString(time))){
+
+                return hairdresserNotes.get(i).split(" ")[0];
+
+            }
+        }
+
+        return "NONE";
+    }
+    private static boolean checkNoteDay(ArrayList<String> hairdresserNotes, String day) {
+        for (int i = 0; i < hairdresserNotes.size(); i++) {
+            if(hairdresserNotes.get(i).split(" ")[2].substring(8).equals(day)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void getHairdresserNotes(User user, ArrayList<String> hairdresserNotes) {
+        try {
+            File file = new File("notes.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                String[] list = line.split(" ");
+                if(list[1].equals(user.login)) hairdresserNotes.add(line);
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void profilePanelInit(User user) {
         loginNameLabel.setForeground(Color.WHITE);
         loginNameLabel.setFont(labelFont);
         loginNameLabel.setText(user.login);
@@ -124,9 +472,35 @@ public class AppFrame extends JFrame {
         upcomingLabel.setFont(labelFont);
         choosingDateLbl.setForeground(Color.white);
         choosingDateLbl.setFont(labelFont);
-        urBookingLabel.setForeground(Color.white);
-        urBookingLabel.setFont(labelFont);
 
+        cancelBookingButton.setFont(secondFont);
+        cancelBookingButton.setBackground(Color.darkGray);
+        cancelBookingButton.setForeground(Color.gray);
+        cancelBookingButton.setFocusable(false);
+        choosingDateCombobox.setFont(secondFont);
+        choosingDateCombobox.setBackground(Color.darkGray);
+        choosingDateCombobox.setForeground(Color.BLACK);
+        choosingDateCombobox.setFocusable(false);
+        actionButton.setBackground(Color.darkGray);
+        actionButton.setForeground(Color.GRAY);
+        actionButton.setFont(secondFont);
+        actionButton.setFocusable(false);
+        successProfileLabel.setFont(secondFont);
+        successProfileLabel.setForeground(Color.darkGray);
+
+
+        for (int i = 0; i < notes.size(); i++) {
+            String[] line = notes.get(i).split(" ");
+            if (line[0].equals(user.login)) {
+                userBooks.add(notes.get(i));
+            }
+        }
+        Collections.sort(userBooks);
+        profileInterfaceInit(user, userBooks);
+        cancelBookingButton.addActionListener(e->cancelNote(user,userBooks));
+    }
+
+    private void profileInterfaceInit(User user, ArrayList<String> userBooks) {
         for (JLabel label : profileLabels){
             label.setFont(secondFont);
             label.setForeground(Color.gray);
@@ -135,26 +509,210 @@ public class AppFrame extends JFrame {
             label.setFont(secondFont);
             label.setForeground(Color.white);
         }
-        for (JLabel label : profileBookedLabels){
-            label.setFont(secondFont);
-            label.setForeground(Color.gray);
-        }
+        upcomingDateLbl.setText("None");
+        upcomingMasterLbl.setText("None");
+        upcomingTimeLbl.setText("None");
+        choosingDateLbl.setVisible(true);
+        choosingDateCombobox.setVisible(true);
+        cancelBookingButton.setVisible(true);
+        choosingDateCombobox.removeAllItems();
 
-        ArrayList<String> userBooks = new ArrayList<>();
+        if(userBooks.size()<2){
+            choosingDateLbl.setVisible(false);
+            choosingDateCombobox.setVisible(false);
+            cancelBookingButton.setVisible(false);
+        }
+        if(userBooks.size()>=1){
+            int count = 1;
+            String[] line = userBooks.get(0).split(" ");
+            for (JLabel label : profileLabels) {
+                if(count==3){
+                    if(line[count].equals("10") || line[count].equals("12")){line[count]+=":00";}
+                    else line[count]+=":30";
+                }
+                label.setText(line[count]);
+                count++;
+            }
+            for (int i = 0; i < userBooks.size(); i++) {
+                String[] lin = userBooks.get(i).split(" ");
+                if(Integer.parseInt(lin[3])>13){
+                    lin[3]+=":30";
+                }else lin[3]+=":00";
+                choosingDateCombobox.addItem(lin[1]+"      "+lin[2]+"      "+lin[3]);
+            }
+        }
+        if(userBooks.size()==0){
+            actionButton.setText("Generate Book");
+            actionButton.addActionListener(e->{
+                LocalDate firstMon = getFirstMondayDate(LocalDate.now());
+                LocalDate currentDay = LocalDate.now();
+                if (currentDay.getDayOfWeek() == DayOfWeek.SATURDAY || currentDay.getDayOfWeek() == DayOfWeek.SUNDAY) {
+                    currentDay = firstMon;
+                }
+                int lastDay = firstMon.getDayOfMonth() + 11;
+
+
+                ArrayList<String> masters = new ArrayList<>();
+                ArrayList<Integer> dates = new ArrayList<>();
+                ArrayList<Integer> times = new ArrayList<>();
+
+                for (int i = 0; i < comboBox1.getItemCount(); i++) {
+                    masters.add(comboBox1.getItemAt(i));
+                }
+
+                for (int i = currentDay.getDayOfMonth(); i < lastDay + 1; i++) {
+                    if (i == currentDay.getDayOfMonth() + 5 || i == currentDay.getDayOfMonth() + 6) {
+                        continue;
+                    }
+                    dates.add(i);
+                }
+                for (int i = 10; i < 17; i += 2) {
+                    times.add(i);
+                }
+                currentDay = LocalDate.now();
+
+
+                int randomMaster = (int) (Math.random() * (masters.size()));
+                int randomDay = (int) (Math.random() * (dates.size()));
+                int randomTime = (int) (Math.random() * (4));
+                LocalDate randomDate = currentDay.minusDays(currentDay.getDayOfMonth() - 1).plusDays(dates.get(randomDay) - 1);
+
+                int counter = 0;
+                while (!checkBooking(times.get(randomTime), randomDate, masters.get(randomMaster), notes)) {
+                    randomMaster = (int) (Math.random() * (masters.size()));
+                    randomDay = (int) (Math.random() * (dates.size()));
+                    randomTime = (int) (Math.random() * (4));
+                    randomDate = currentDay.minusDays(currentDay.getDayOfMonth() - 1).plusDays(dates.get(randomDay) - 1);
+                    if (counter > 300) {
+                        break;
+                    }
+                    counter++;
+                }
+                if (counter < 300) {
+                    chosenTime = times.get(randomTime);
+                    chosenDateSup = randomDate;
+                    chosenMasterSup = masters.get(randomMaster);
+                    String t;
+                    if(chosenTime>13){
+                        t = chosenTime+":30";
+                    }else t = chosenTime+":00";
+                    successProfileLabel.setForeground(Color.green);
+                    successProfileLabel.setText("Success");
+                    upcomingMasterLbl.setText(chosenMasterSup);
+                    upcomingDateLbl.setText(chosenDateSup.toString());
+                    upcomingTimeLbl.setText(t);
+
+                    createNewNote(user.login, chosenTime, chosenDateSup, chosenMasterSup);
+
+                    notes.add(user.login + " " + chosenMasterSup + " " + chosenDateSup.toString() + " " + chosenTime);
+                    changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+                } else {
+                    successProfileLabel.setForeground(Color.red);
+                    successProfileLabel.setText("Can't make a book");
+                }
+                changeTimeButtonsSettings(time, chosenDateSup, chosenMasterSup, notes);
+                changeInterface(weeks, time, comboBox1, chosenTime, chosenDateSup, chosenMasterSup);
+
+                userBooks.clear();
+                notes.clear();
+                notes = getNotes();
+                for (int i = 0; i < notes.size(); i++) {
+                    String[] line = notes.get(i).split(" ");
+                    if (line[0].equals(user.login) && !userBooks.contains(notes.get(i))) {
+                        userBooks.add(notes.get(i));
+                    }
+                }
+                Collections.sort(userBooks);
+
+                choosingDateCombobox.removeAllItems();
+                for (int i = 0; i < userBooks.size(); i++) {
+                    String[] line = userBooks.get(i).split(" ");
+                    if(Integer.parseInt(line[3])>13){
+                        line[3]+=":30";
+                    }else line[3]+=":00";
+                    choosingDateCombobox.addItem(line[1]+"      "+line[2]+"      "+line[3]);
+                }
+                profileInterfaceInit(user,userBooks);
+            });
+        }
+        else {
+            actionButton.setText("Cancel Book");
+            actionButton.addActionListener(e->{
+                cancelNote(user, userBooks);
+
+
+            });
+        }
+    }
+
+    private void cancelNote(User user, ArrayList<String> userBooks) {
+        String[] lis = choosingDateCombobox.getSelectedItem().toString().split("      ");
+        lis[2]=lis[2].substring(0,2);
+
+        notes.clear();
+        try {
+            File file = new File("notes.txt");
+            //создаем объект FileReader для объекта File
+            FileReader fr = new FileReader(file);
+            //создаем BufferedReader с существующего FileReader для построчного считывания
+            BufferedReader reader = new BufferedReader(fr);
+            // считаем сначала первую строку
+            String line = reader.readLine();
+            while (line != null) {
+                if(line.split(" ")[1].equals(lis[0]) && line.split(" ")[2].equals(lis[1]) && line.split(" ")[3].equals(lis[2]) ){
+                    line = reader.readLine();
+
+                    continue;
+                }
+                notes.add(line);
+                // считываем остальные строки в цикле
+                line = reader.readLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileWriter fstream1 = new FileWriter("notes.txt");// конструктор с одним параметром - для перезаписи
+            BufferedWriter out1 = new BufferedWriter(fstream1); //  создаём буферезированный поток
+            out1.write(""); // очищаем, перезаписав поверх пустую строку
+            out1.close(); // закрываем
+        } catch (Exception ex) {
+            System.err.println("Error in file cleaning: " + ex.getMessage());
+        }
+        try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
+            String str = "";
+            for (int i = 0; i < notes.size()-1; i++) {
+                fileWriter.write(notes.get(i) + "\n");
+            }if(notes.size()>0) {
+                fileWriter.write(notes.get(notes.size() - 1));
+            }
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+        successProfileLabel.setForeground(Color.green);
+        successProfileLabel.setText("Success");
+        notes.clear();
+        notes = getNotes();
+        userBooks.clear();
         for (int i = 0; i < notes.size(); i++) {
-            if (notes.get(i).split(" ")[0].equals(user.login)) {
+            String[] line = notes.get(i).split(" ");
+            if (line[0].equals(user.login) && !userBooks.contains(notes.get(i))) {
                 userBooks.add(notes.get(i));
             }
         }
-        if(userBooks.size()<2){
-            for (JLabel label : profileBookedLabels){
-                label.setVisible(false);
-            }
-            choosingDateLbl.setVisible(false);
-            choosingDateCombobox.setVisible(false);
+        Collections.sort(userBooks);
+
+        choosingDateCombobox.removeAllItems();
+        for (int i = 0; i < userBooks.size(); i++) {
+            String[] line = userBooks.get(i).split(" ");
+            if(Integer.parseInt(line[3])>13){
+                line[3]+=":30";
+            }else line[3]+=":00";
+            choosingDateCombobox.addItem(line[1]+"      "+line[2]+"      "+line[3]);
         }
-
-
+        profileInterfaceInit(user, userBooks);
     }
 
     private void appFrameInit(User user) {
@@ -166,7 +724,18 @@ public class AppFrame extends JFrame {
         panel1.setBackground(Color.darkGray);
         clientPanel.setBackground(Color.darkGray);
         clientProfilePanel.setBackground(Color.darkGray);
-
+        clientProfileButton.addActionListener(e -> {
+            notes.clear();
+            notes = getNotes();
+            userBooks.clear();
+            for (int i = 0; i < notes.size(); i++) {
+                String[] line = notes.get(i).split(" ");
+                if (line[0].equals(user.login) && !userBooks.contains(notes.get(i))) {
+                    userBooks.add(notes.get(i));
+                }
+            }
+            profileInterfaceInit(user,userBooks);
+        });
 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int frameWidth = (int) dimension.getWidth(), frameHeight = (int) dimension.getHeight();
@@ -183,7 +752,6 @@ public class AppFrame extends JFrame {
             clientProfileButton.addActionListener(e -> tabs.show(clientTabsPanel, "clientProfile"));
         } else {
             tabs = (CardLayout) (serviceTabsPanel.getLayout());
-            newsButton1.addActionListener(e -> tabs.show(serviceTabsPanel, "news"));
             scheduleButton.addActionListener(e -> tabs.show(serviceTabsPanel, "schedule"));
             ratingsButton.addActionListener(e -> tabs.show(serviceTabsPanel, "ratings"));
         }
@@ -224,11 +792,11 @@ public class AppFrame extends JFrame {
 
         bookedLabel.setFont(secondFont);
         dateHeader.setForeground(Color.white);
-        dateHeader.setFont(secondFont);
+        dateHeader.setFont(labelFont);
         timeHeader.setForeground(Color.white);
-        timeHeader.setFont(secondFont);
+        timeHeader.setFont(labelFont);
         chooseTheHairdresserLabel.setForeground(Color.white);
-        chooseTheHairdresserLabel.setFont(secondFont);
+        chooseTheHairdresserLabel.setFont(labelFont);
         int count = 0;
 
         comboboxInit(time);
@@ -263,7 +831,7 @@ public class AppFrame extends JFrame {
 
     private void daysOfWeekInit(JLabel[] daysOfWeek) {
         for (JLabel label : daysOfWeek) {
-            label.setFont(secondFont);
+            label.setFont(labelFont);
             label.setForeground(Color.WHITE);
         }
     }
@@ -441,7 +1009,7 @@ public class AppFrame extends JFrame {
 
     private void headerButtonsSettings() {
         northPanelButtonSettings(bookButton);
-        northPanelButtonSettings(newsButton1);
+        northPanelButtonSettings(exitButton);
         northPanelButtonSettings(scheduleButton);
         northPanelButtonSettings(ratingsButton);
         northPanelButtonSettings(clientProfileButton);

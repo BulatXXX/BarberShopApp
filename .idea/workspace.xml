@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="ideal booking window">
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="almost done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/people.txt" beforeDir="false" afterPath="$PROJECT_DIR$/people.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,15 +35,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;231&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Spectra/IdeaProjects/Barbashop&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "192",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Spectra/IdeaProjects/Barbashop",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -90,7 +92,12 @@
       <workItem from="1669209120092" duration="5829000" />
       <workItem from="1670162353842" duration="15238000" />
       <workItem from="1670526980625" duration="11475000" />
-      <workItem from="1670596074928" duration="17067000" />
+      <workItem from="1670596074928" duration="17119000" />
+      <workItem from="1670625570384" duration="4847000" />
+      <workItem from="1670630533001" duration="972000" />
+      <workItem from="1670665822446" duration="36000" />
+      <workItem from="1670756848986" duration="16848000" />
+      <workItem from="1670843333119" duration="7363000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -253,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670621958542</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="ideal booking window">
+      <created>1670625544493</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1670625544493</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +311,7 @@
     <MESSAGE value="Zbs" />
     <MESSAGE value="made booking window" />
     <MESSAGE value="ideal booking window" />
-    <option name="LAST_COMMIT_MESSAGE" value="ideal booking window" />
+    <MESSAGE value="almost done" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost done" />
   </component>
 </project>
