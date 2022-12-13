@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="almost done">
+    <list default="true" id="c0e1287b-1296-43d1-b136-cd95cc18264d" name="Changes" comment="done 85% plus mem">
+      <change afterPath="$PROJECT_DIR$/constr.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MyCanvas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/people.txt" beforeDir="false" afterPath="$PROJECT_DIR$/people.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "22",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "192",
     "WebServerToolWindowFactoryState": "false",
@@ -97,7 +99,9 @@
       <workItem from="1670630533001" duration="972000" />
       <workItem from="1670665822446" duration="36000" />
       <workItem from="1670756848986" duration="16848000" />
-      <workItem from="1670843333119" duration="7363000" />
+      <workItem from="1670843333119" duration="9574000" />
+      <workItem from="1670864019408" duration="439000" />
+      <workItem from="1670867477143" duration="378000" />
     </task>
     <task id="LOCAL-00001" summary="firstVers">
       <created>1662621099535</created>
@@ -267,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670625544493</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="done 85%">
+      <created>1670850890835</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1670850890835</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +323,8 @@
     <MESSAGE value="made booking window" />
     <MESSAGE value="ideal booking window" />
     <MESSAGE value="almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="almost done" />
+    <MESSAGE value="done 85%" />
+    <MESSAGE value="done 85% plus mem" />
+    <option name="LAST_COMMIT_MESSAGE" value="done 85% plus mem" />
   </component>
 </project>

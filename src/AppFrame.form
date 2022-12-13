@@ -1219,7 +1219,7 @@
                   </hspacer>
                 </children>
               </grid>
-              <grid id="37288" binding="ratingsPanel" layout-manager="CardLayout" hgap="0" vgap="0">
+              <grid id="37288" binding="ratingsPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
                   <card name="ratings"/>
                 </constraints>
@@ -1227,7 +1227,14 @@
                   <background color="-12697344"/>
                 </properties>
                 <border type="none"/>
-                <children/>
+                <children>
+                  <component id="63b90" class="javax.swing.JLabel" binding="comingsoon">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <text value="                        Coming Soon"/>
+                    </properties>
+                  </component>
+                </children>
               </grid>
             </children>
           </grid>

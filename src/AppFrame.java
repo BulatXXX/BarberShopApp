@@ -1,5 +1,8 @@
+import javax.print.attribute.standard.Media;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.*;
@@ -8,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AppFrame extends JFrame {
+public class AppFrame extends JFrame implements ActionListener {
     private JPanel panel1;
     private JPanel clientPanel;
 
@@ -125,6 +128,9 @@ public class AppFrame extends JFrame {
     private JLabel chooseTimeLbl;
     private JLabel dayOffLbl;
     private JLabel breakLbl;
+    private JLabel comingsoon;
+
+    Color[] colors ={Color.BLACK,Color.BLUE,Color.CYAN,Color.GREEN,Color.orange,Color.WHITE,Color.red,Color.MAGENTA,Color.pink,Color.yellow,Color.lightGray};
     JLabel[] daysOfWeek = {monLabel, tueLabel, wedLabel, thuLabel, friLabel};
     JButton[] weeks = {bm1, btu1, bw1, bth1, bf1, bm2, btu2, bw2, bth2, bf2};
     JButton[] time = {btn10, btn12, btn14, btn16};
@@ -134,7 +140,7 @@ public class AppFrame extends JFrame {
     JButton[] calendarButtons = {b1,b2,b3,b4,b5,b6,b7,b8,b9,b10};
     JButton[] timeButtons = {a1000Button,a1200Button,a1430Button,a1630Button};
     JLabel[] urClientLbl = {urclientlbl1,urclientlbl2,urclientlbl3,urclientlbl4};
-    JLabel[] clientsLabels = {urclient1,urclient2,urclient3,urclient4};
+    JLabel[] clientsLabels = {urclient1,urclient3,urclient2,urclient4};
     LocalDate currentDate = LocalDate.now(); // Gets the current currentDate
     LocalDate monDate = getFirstMondayDate(currentDate);
 
@@ -200,17 +206,29 @@ public class AppFrame extends JFrame {
         takeABreakButton.setFont(secondFont);
         takeABreakButton.setBackground(Color.darkGray);
         takeABreakButton.setFocusable(false);
+        scheduleBtnsListeners(user, hairdresserNotes, monday, dayCounter);
+        ratingsPanel.add(new MyCanvas());
+        comingsoon.setFont(labelFont);
+
+
+        Timer timer = new Timer(250,this);
+        timer.start();
+
+
+    }
+
+    private void scheduleBtnsListeners(User user, ArrayList<String> hairdresserNotes, LocalDate monday, int dayCounter) {
         takeadayoffBtn.addActionListener(e->{
             if(checkFree(user,"all")){
                 try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
-                    fileWriter.write("\nBREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"10"+"\n");
-                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"12"+"\n");
-                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"14"+"\n");
-                    fileWriter.write("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"16");
-                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"10");
-                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"12");
-                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"14");
-                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+"16");
+                    fileWriter.write("\nBREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"10"+"\n");
+                    fileWriter.write("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"12"+"\n");
+                    fileWriter.write("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"14"+"\n");
+                    fileWriter.write("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"16");
+                    hairdresserNotes.add("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"10");
+                    hairdresserNotes.add("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"12");
+                    hairdresserNotes.add("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"14");
+                    hairdresserNotes.add("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+"16");
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
@@ -223,13 +241,13 @@ public class AppFrame extends JFrame {
             }
             setWeeksButtons(calendarButtons, hairdresserNotes, monday, dayCounter);
             setTimeButtons(timeButtons, hairdresserNotes);
-            setClients(clientsLabels,hairdresserNotes);
+            setClients(clientsLabels, hairdresserNotes);
         });
         takeABreakButton.addActionListener(e->{
             if(checkFree(user)){
                 try (FileWriter fileWriter = new FileWriter("notes.txt", true)) {
-                    fileWriter.write("\nBREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+chosenTime);
-                    hairdresserNotes.add("BREAK"+" "+user.login+" "+chosenDateSup.toString()+" "+chosenTime);
+                    fileWriter.write("\nBREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+chosenTime);
+                    hairdresserNotes.add("BREAK"+" "+ user.login+" "+chosenDateSup.toString()+" "+chosenTime);
 
                 } catch (IOException exception) {
                     exception.printStackTrace();
@@ -242,11 +260,10 @@ public class AppFrame extends JFrame {
             breakLbl.setText("Error");}
             setWeeksButtons(calendarButtons, hairdresserNotes, monday, dayCounter);
             setTimeButtons(timeButtons, hairdresserNotes);
-            setClients(clientsLabels,hairdresserNotes);
+            setClients(clientsLabels, hairdresserNotes);
         });
-
-
     }
+
     private boolean checkFree(User user,String all) {
         try {
             String[] list;
@@ -1239,4 +1256,10 @@ public class AppFrame extends JFrame {
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int rand = (int) (Math.random() * colors.length);
+        ratingsPanel.setBackground(colors[rand]);
+        comingsoon.setForeground(colors[(rand+5)% colors.length]);
+    }
 }
